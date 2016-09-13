@@ -1,22 +1,13 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <transition
-      mode="out-in"
-      enter-active-class="fadeIn"
-      leave-active-class="fadeOut"
-      appear>
-      <router-view class="animated"></router-view>
-    </transition>
-  </div>
+<div id="app">
+  <router-view></router-view>
+</div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      msg: 'Hello Vue 2.0!'
     }
   }
 }
