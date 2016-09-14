@@ -5,7 +5,6 @@ import store from './store'
 import router from './router'
 import { sync } from 'vuex-router-sync'
 import * as filters from './filters'
-// import 'element-ui/lib/theme-default/index.css'
 
 Vue.use(Element)
 

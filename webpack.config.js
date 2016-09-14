@@ -20,10 +20,16 @@ module.exports = {
       loader: 'babel',
       exclude: /node_modules/
     }, {
-      test: /\.(png|jpg|gif|svg)$/,
-      loader: 'file',
+      test: /\.(png|jpg|gif|svg)(\?.*)?$/,
+      loader: 'url',
       query: {
-        name: '[name].[ext]?[hash]'
+        name: '[name].[hash:7].[ext]'
+      }
+    }, {
+      test: /\.(woff?|eot|ttf|otf)(\?.*)?$/,
+      loader: 'url',
+      query: {
+        name: 'fonts/[name].[hash:7].[ext]'
       }
     }]
   },

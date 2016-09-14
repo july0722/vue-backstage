@@ -7,15 +7,12 @@
 <script>
 export default {
   data() {
-    return {
-    }
+    return {}
   }
 }
 </script>
 
-<style>
+<style lang="sass">
+@import '~element-ui/lib/theme-default/index.css';
 @import '~animate.css';
-body {
-  font-family: Helvetica, sans-serif;
-}
 </style>
