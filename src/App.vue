@@ -12,7 +12,9 @@ export default {
 }
 </script>
 
-<style lang="sass">
-@import '~element-ui/lib/theme-default/index.css';
+<style lang="sass">@import '~element-ui/lib/theme-default/index.css';
 @import '~animate.css';
+img {
+    vertical-align: middle;
+}
 </style>
