@@ -34,6 +34,9 @@ module.exports = {
     }]
   },
   vue: {
+    // loaders: {
+    //   scss: ['vue-style-loader', 'css', 'sass'].join('!')
+    // },
     postcss: [
       require('autoprefixer')({
         browsers: ['last 3 versions']

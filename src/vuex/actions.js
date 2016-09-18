@@ -10,13 +10,11 @@ export const login = ({
     api.login({
       account,
       password
-    }).then((data, error) => {
-      commit(types.AUTH_LOGIN, {
-        ID: 1
-      })
-      resolve()
-    }).catch((err) => {
-      reject()
+    }).then((response) => {
+      commit(types.AUTH_LOGIN, response.data)
+      return resolve(response.data)
+    }).catch((error) => {
+      return reject(error)
     })
   })
 }
