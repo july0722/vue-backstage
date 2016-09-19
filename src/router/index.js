@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../vuex/store'
-import { loggedIn } from '../vuex/getters'
+import {
+  loggedIn
+} from '../vuex/getters'
 
 Vue.use(VueRouter)
 
@@ -12,8 +14,8 @@ const router = new VueRouter({
   }),
   routes: [{
     path: '/',
-    component: require('../views/Layout.vue'),
     redirect: '/login',
+    component: require('../views/Layout.vue'),
     children: [{
       path: '/dashboard',
       component: require('../views/Dashboard.vue')
@@ -31,15 +33,16 @@ const router = new VueRouter({
 })
 
 router.beforeEach((route, redirect, next) => {
- //  if (!auth.loggedIn()) {
- //   redirect({
- //     path: '/login',
- //     query: { redirect: route.fullPath }
- //   })
- // } else {
- //   next()
- // }
-  next()
+  if (!loggedIn(store.state) && route.path !== '/login') {
+    redirect({
+      path: '/login',
+      query: {
+        redirect: route.fullPath
+      }
+    })
+  } else {
+    next()
+  }
 })
 
 export default router

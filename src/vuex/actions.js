@@ -4,12 +4,10 @@ import api from '../api'
 export const login = ({
   commit,
   state
-}, account, password) => {
-  console.log(password)
+}, payload) => {
   return new Promise((resolve, reject) => {
     api.login({
-      account,
-      password
+      ...payload
     }).then((response) => {
       commit(types.AUTH_LOGIN, response.data)
       return resolve(response.data)

@@ -4,10 +4,10 @@ import {
 import './data'
 
 export default {
-  login: function(data) {
+  login: function(payload) {
     return AuthResource.get({
       action: 'login',
-      ...data
+      ...payload
     })
   }
     // login: function(data) {

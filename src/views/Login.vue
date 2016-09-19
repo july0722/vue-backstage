@@ -5,7 +5,7 @@
       <el-input v-model="ruleForm.account" placeholder="请输入账号"></el-input>
     </el-form-item>
     <el-form-item prop="password">
-      <el-input v-model="ruleForm.password" placeholder="请输入密码"></el-input>
+      <el-input type="password" v-model="ruleForm.password" placeholder="请输入密码"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click.native.prevent="submit" :loading="isLoading">登录</el-button>
@@ -47,10 +47,12 @@ export default {
     submit(ev) {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
-          console.log(this.ruleForm.password)
           this.isLoading = true
-          this.login(this.ruleForm.account, this.ruleForm.password).then((response) => {
-            console.log(response)
+          this.login({
+            account: this.ruleForm.account,
+            password: this.ruleForm.password
+          }).then((response) => {
+            this.$router.push(this.$route.query.redirect || '/dashboard')
           })
         }
       })
