@@ -8,12 +8,9 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'build.js'
   },
-  resolve: {
-    extensions: ['', '.js', '.vue', '.sass'],
-  },
-  resolveLoader: {
-    root: path.join(__dirname, 'node_modules'),
-  },
+  // resolveLoader: {
+  //   root: path.join(__dirname, 'node_modules'),
+  // },
   module: {
     loaders: [{
       test: /\.vue$/,
