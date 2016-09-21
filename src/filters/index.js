@@ -1,8 +1,8 @@
 export function datetime(date, format = 'yyyy-MM-dd HH:mm:ss') {
   date = date == undefined ? new Date() : date
-  if(date == undefined){
+  if (date == undefined) {
     date = new Date()
-  }else if(typeof date == 'string'){
+  } else if (typeof date == 'string') {
     date = new Date(Number(date.replace(/\/Date\((\d+)\)\//, '$1')))
   }
   var obj = {

@@ -12,10 +12,6 @@ export default {
 }
 </script>
 
-<style lang="sass">@import '~normalize.css';
+<style lang="scss">@import '~normalize.css';
 @import '~element-ui/lib/theme-default/index.css';
-@import '~animate.css';
-img {
-    vertical-align: middle;
-}
-</style>
+@import '~animate.css';</style>

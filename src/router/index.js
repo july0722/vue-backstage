@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../vuex/store'
-import {
-  loggedIn
-} from '../vuex/getters'
 
 Vue.use(VueRouter)
 
@@ -33,7 +30,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((route, redirect, next) => {
-  if (!loggedIn(store.state) && route.path !== '/login') {
+  if (!store.getters.loggedIn && route.path !== '/login') {
     redirect({
       path: '/login',
       query: {

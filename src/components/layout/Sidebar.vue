@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss">
 .sidebar {
     position: fixed;
     top: 64px;

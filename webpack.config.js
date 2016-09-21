@@ -20,29 +20,27 @@ module.exports = {
       loader: 'babel',
       exclude: /node_modules/
     }, {
-      test: /\.(png|jpg|gif|svg)(\?.*)?$/,
-      loader: 'url',
-      query: {
-        name: '[name].[hash:7].[ext]'
-      }
+      test: /\.(png|jpg|gif|svg)$/,
+      loader: 'url'
     }, {
-      test: /\.(woff?|eot|ttf|otf)(\?.*)?$/,
-      loader: 'url',
-      query: {
-        name: 'fonts/[name].[hash:7].[ext]'
-      }
+      test: /\.(woff?|eot|ttf|otf)$/,
+      loader: 'url'
     }]
   },
-  vue: {
-    // loaders: {
-    //   scss: ['vue-style-loader', 'css', 'sass'].join('!')
-    // },
-    postcss: [
-      require('autoprefixer')({
-        browsers: ['last 3 versions']
-      })
-    ]
-  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      vue: {
+        loaders: {
+          scss: 'vue-style-loader!css!sass'
+        },
+        postcss: [
+          require('autoprefixer')({
+            browsers: ['last 3 versions']
+          })
+        ]
+      },
+    })
+  ],
   devServer: {
     historyApiFallback: true,
     noInfo: true
