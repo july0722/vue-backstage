@@ -12,6 +12,17 @@ module.exports = {
   //   root: path.join(__dirname, 'node_modules'),
   // },
   module: {
+    // rules: [{
+    //   enforce: 'pre',
+    //   test: /\.vue$/,
+    //   loader: 'eslint',
+    //   exclude: /node_modules/
+    // }, {
+    //   enforce: 'pre',
+    //   test: /\.js$/,
+    //   loader: 'eslint',
+    //   exclude: /node_modules/
+    // }],
     loaders: [{
       test: /\.vue$/,
       loader: 'vue'
@@ -38,7 +49,10 @@ module.exports = {
             browsers: ['last 3 versions']
           })
         ]
-      },
+      }
+      // eslint: {
+      //   formatter: require('eslint-friendly-formatter')
+      // }
     })
   ],
   devServer: {

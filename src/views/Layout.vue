@@ -25,15 +25,15 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped>@import '../assets/styles/fn.scss';
 .layout {
     &-main {
-        margin-left: 224px;
-        padding: 64px + 24px 24px 24px;
+        margin-left: $globalSidebarWidth;
+        padding: $globalGap*3 + $globalNavbarHeight $globalGap*3 $globalGap*3;
     }
     &-container {
-        padding: 24px;
-        border-radius: 5px;
+        padding: $globalGap*3;
+        border-radius: $globalBorderRadius;
         box-shadow: 0 2px 3px hsla(0,0%,7%,.1),0 0 0 1px hsla(0,0%,7%,.1);
     }
 }

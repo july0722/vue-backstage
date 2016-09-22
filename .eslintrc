@@ -1,0 +1,9 @@
+{
+  extends: 'standard',
+  plugins: [
+    'html'
+  ],
+  'rules': {
+    'arrow-parens': 0,
+  }
+}

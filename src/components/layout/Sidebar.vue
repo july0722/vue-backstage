@@ -23,16 +23,16 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss">@import '../../assets/styles/fn.scss';
 .sidebar {
     position: fixed;
-    top: 64px;
+    top: $globalNavbarHeight;
     left: 0;
     bottom: 0;
-    width: 224px;
+    width: $globalSidebarWidth;
     max-height: 100vh;
     height: 100%;
-    z-index: 1023;
+    z-index: 1;
     background: #fff;
     box-shadow: 0 2px 3px hsla(0,0%,7%,.1),0 0 0 1px hsla(0,0%,7%,.1);
     overflow-y: auto;

@@ -3,7 +3,9 @@ import Element from 'element-ui'
 import App from './App.vue'
 import store from './vuex/store'
 import router from './router'
-import { sync } from 'vuex-router-sync'
+import {
+  sync
+} from 'vuex-router-sync'
 import * as filters from './filters'
 
 Vue.use(Element)

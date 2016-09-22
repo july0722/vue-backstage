@@ -8,7 +8,7 @@
       <el-input type="password" v-model="ruleForm.password" placeholder="请输入密码"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click.native.prevent="submit" :loading="isLoading">登录</el-button>
+      <el-button type="primary" @click.native.prevent="handleSubmit" :loading="isLoading">登录</el-button>
     </el-form-item>
   </el-form>
 </div>
@@ -44,7 +44,7 @@ export default {
     ...mapActions([
       'login'
     ]),
-    submit(ev) {
+    handleSubmit() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           this.isLoading = true
