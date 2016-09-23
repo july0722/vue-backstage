@@ -1,8 +1,8 @@
 export function datetime(date, format = 'yyyy-MM-dd HH:mm:ss') {
-  date = date == undefined ? new Date() : date
-  if (date == undefined) {
+  date = date === undefined ? new Date() : date
+  if (date === undefined) {
     date = new Date()
-  } else if (typeof date == 'string') {
+  } else if (typeof date === 'string') {
     date = new Date(Number(date.replace(/\/Date\((\d+)\)\//, '$1')))
   }
   var obj = {
@@ -13,7 +13,7 @@ export function datetime(date, format = 'yyyy-MM-dd HH:mm:ss') {
     'q': Math.floor((date.getMonth() + 3) / 3), // 季度
     'w': date.getDay(), // 星期，注意是0-6
     'H': date.getHours(), // 24小时制
-    'h': date.getHours() % 12 == 0 ? 12 : date.getHours() % 12, // 12小时制
+    'h': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12, // 12小时制
     'm': date.getMinutes(), // 分钟
     's': date.getSeconds(), // 秒
     'S': date.getMilliseconds() // 毫秒
@@ -22,9 +22,9 @@ export function datetime(date, format = 'yyyy-MM-dd HH:mm:ss') {
   for (var i in obj) {
     format = format.replace(new RegExp(i + '+', 'g'), function(m) {
       var val = obj[i] + ''
-      if (i == 'w') return (m.length > 2 ? '星期' : '周') + week[val]
+      if (i === 'w') return (m.length > 2 ? '星期' : '周') + week[val]
       for (var j = 0, len = val.length; j < m.length - len; j++) val = '0' + val
-      return m.length == 1 ? val : val.substring(val.length - m.length)
+      return m.length === 1 ? val : val.substring(val.length - m.length)
     })
   }
   return format

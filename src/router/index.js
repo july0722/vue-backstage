@@ -12,7 +12,7 @@ const router = new VueRouter({
   routes: [{
     path: '/',
     redirect: '/login',
-    component: require('../views/Layout.vue'),
+    component: require('../views/Main.vue'),
     children: [{
       path: '/dashboard',
       component: require('../views/Dashboard.vue')
@@ -23,7 +23,7 @@ const router = new VueRouter({
   }, {
     path: '/logout',
     beforeEnter(route, redirect) {
-      auth.logout()
+      store.dispatch('logout')
       redirect('/')
     }
   }]

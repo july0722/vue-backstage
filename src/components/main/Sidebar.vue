@@ -1,5 +1,5 @@
 <template>
-<div class="sidebar">
+<div class="main-sidebar">
   <el-menu default-active="1-1">
     <el-submenu index="1">
       <template slot="title"><i class="el-icon-message"></i>导航一
@@ -24,12 +24,12 @@ export default {
 </script>
 
 <style lang="scss">@import '../../assets/styles/fn.scss';
-.sidebar {
+.main-sidebar {
     position: fixed;
-    top: $globalNavbarHeight;
+    top: $global-navbar-height;
     left: 0;
     bottom: 0;
-    width: $globalSidebarWidth;
+    width: $global-sidebar-width;
     max-height: 100vh;
     height: 100%;
     z-index: 1;
