@@ -1,5 +1,5 @@
 <template>
-<div class="login">
+<div class="auth-login">
   <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
     <el-form-item prop="account">
       <el-input v-model="ruleForm.account" placeholder="请输入账号"></el-input>
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style lang="scss">
-.login {
+.auth-login {
     button {
         width: 100%;
     }

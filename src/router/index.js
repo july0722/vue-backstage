@@ -16,10 +16,13 @@ const router = new VueRouter({
     children: [{
       path: '/dashboard',
       component: require('../views/Dashboard.vue')
-    }]
+    }, {
+      path: '/password',
+      component: require('../views/auth/Password.vue')
+    }, ]
   }, {
     path: '/login',
-    component: require('../views/Login.vue')
+    component: require('../views/auth/Login.vue')
   }, {
     path: '/logout',
     beforeEnter(route, redirect) {
