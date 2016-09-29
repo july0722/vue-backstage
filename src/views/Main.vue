@@ -2,17 +2,17 @@
 <div class="main">
   <navbar></navbar>
   <sidebar></sidebar>
-  <transition mode="out-in" enter-active-class="fadeIn" leave-active-class="fadeOut" appear>
-    <div class="main-wrapper">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item>首页</el-breadcrumb-item>
-        <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-        <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-        <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-      </el-breadcrumb>
+  <div class="main-wrapper">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item>首页</el-breadcrumb-item>
+      <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+      <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+    </el-breadcrumb>
+    <transition mode="out-in" enter-active-class="fadeIn" leave-active-class="fadeOut" appear>
       <router-view class="main-view animated"></router-view>
-    </div>
-  </transition>
+    </transition>
+  </div>
 </div>
 </template>
 
@@ -34,7 +34,6 @@ export default {
 <style lang="scss">@import '../assets/styles/fn.scss';
 .main {
     &-wrapper {
-        background: #ececec;
         margin-left: $global-sidebar-width;
         padding: $global-gap*2 + $global-navbar-height $global-gap*2 $global-gap*2;
     }

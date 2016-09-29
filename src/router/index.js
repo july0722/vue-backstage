@@ -19,25 +19,28 @@ const router = new VueRouter({
     }, {
       path: '/password',
       component: require('../views/auth/Password.vue')
-    }, ]
+    }, {
+      path: '/customer/list',
+      component: require('../views/customer/List.vue')
+    }]
   }, {
     path: '/login',
     component: require('../views/auth/Login.vue')
   }, {
     path: '/logout',
-    beforeEnter(route, redirect) {
+    beforeEnter(to, from, next) {
       store.dispatch('logout')
-      redirect('/')
+      next('/')
     }
   }]
 })
 
-router.beforeEach((route, redirect, next) => {
-  if (!store.getters.loggedIn && route.path !== '/login') {
-    redirect({
+router.beforeEach((to, from, next) => {
+  if (!store.getters.loggedIn && to.path !== '/login') {
+    next({
       path: '/login',
       query: {
-        redirect: route.fullPath
+        redirect: to.fullPath
       }
     })
   } else {

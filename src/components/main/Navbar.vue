@@ -1,7 +1,9 @@
 <template>
 <div class="main-navbar">
   <el-dropdown :text="currentUser.name" type="text" :icon-separate="false">
-    <el-dropdown-item>系统设置</el-dropdown-item>
+    <el-dropdown-item>
+      <router-link to="/password">修改密码</router-link>
+    </el-dropdown-item>
     <el-dropdown-item class="divider">
       <router-link to="/logout">退出</router-link>
     </el-dropdown-item>

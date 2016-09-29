@@ -15,8 +15,4 @@ export default {
 <style lang="scss">@import '~normalize.css';
 @import '~element-ui/lib/theme-default/index.css';
 @import '~animate.css';
-@import '~nprogress/nprogress.css';
-body {
-    background: #ececec;
-}
-</style>
+@import '~nprogress/nprogress.css';</style>

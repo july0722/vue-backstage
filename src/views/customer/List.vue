@@ -1,7 +1,7 @@
 <template>
 <div>
   <el-row>
-    <el-input placeholder="请输入内容" style="width: 300px;">
+    <el-input placeholder="请输内容" style="width: 300px;">
       <el-button slot="append" icon="search"></el-button>
     </el-input>
     <el-button type="primary" icon="plus">添加</el-button>
@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style lang="scss">@import '../assets/styles/fn.scss';
+<style lang="scss">@import '../../assets/styles/fn.scss';
 .el-pagination {
     text-align: right;
     padding-top: $global-gap*2;

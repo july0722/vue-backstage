@@ -1,12 +1,12 @@
 <template>
 <div class="main-sidebar">
-  <el-menu default-active="1-1">
-    <el-submenu index="1">
+  <el-menu default-active="/dashboard" :router="true">
+    <el-submenu>
       <template slot="title"><i class="el-icon-message"></i>导航一
 </template>
-      <el-menu-item index="1-1">选项1</el-menu-item>
-      <el-menu-item index="1-2">选项2</el-menu-item>
-      <el-menu-item index="1-3">选项3</el-menu-item>
+      <el-menu-item index="/customer/list">选项1</el-menu-item>
+      <el-menu-item index="/password">选项2</el-menu-item>
+      <el-menu-item index="/dashboard">选项3</el-menu-item>
     </el-submenu>
     <el-submenu index="2">
       <template slot="title">
