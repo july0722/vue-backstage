@@ -19,7 +19,7 @@ const router = new VueRouter({
     }, {
       path: '/password',
       component: require('../views/auth/Password.vue')
-    }, ]
+    }]
   }, {
     path: '/login',
     component: require('../views/auth/Login.vue')

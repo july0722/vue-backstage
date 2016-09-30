@@ -1,9 +1,0 @@
-{
-  extends: 'vue',
-  plugins: [
-    'html'
-  ],
-  'rules': {
-    'arrow-parens': 0,
-  }
-}

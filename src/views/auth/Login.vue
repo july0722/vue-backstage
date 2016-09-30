@@ -23,7 +23,7 @@ export default {
     return {
       ruleForm: {
         account: '',
-        password: '',
+        password: ''
       },
       rules: {
         account: [{

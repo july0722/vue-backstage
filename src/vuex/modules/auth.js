@@ -1,7 +1,7 @@
 import * as types from '../mutation-types'
 
 const state = {
-  user: JSON.parse(window.sessionStorage.getItem('backstage_auth_user')),
+  user: JSON.parse(window.sessionStorage.getItem('backstage_auth_user'))
 
 }
 

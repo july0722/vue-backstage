@@ -67,7 +67,7 @@ export default {
           validator: validaePass2
         }]
       }
-    };
+    }
   },
   methods: {
     handleReset() {
@@ -76,12 +76,12 @@ export default {
     handleSubmit() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
-          alert('submit!')
+          console.log('submit!')
         } else {
           console.log('error submit!!')
-          return false;
+          return false
         }
-      });
+      })
     }
   }
 }
