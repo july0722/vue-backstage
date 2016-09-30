@@ -18,7 +18,7 @@ export function datetime(date, format = 'yyyy-MM-dd HH:mm:ss') {
     's': date.getSeconds(), // 秒
     'S': date.getMilliseconds() // 毫秒
   }
-  var week = ['日', '一', '二', '三', '四', '五', '六'];
+  var week = ['日', '一', '二', '三', '四', '五', '六']
   for (var i in obj) {
     format = format.replace(new RegExp(i + '+', 'g'), function(m) {
       var val = obj[i] + ''
