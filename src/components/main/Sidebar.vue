@@ -1,32 +1,12 @@
 <template>
 <div class="main-sidebar">
-  <el-menu default-active="/dashboard" :router="true">
-    <el-submenu>
-      <template slot="title"><i class="el-icon-message"></i>导航一
+  <el-menu :router="true" :default-active="$store.state.base.menu[0].path">
+    <el-submenu v-for="(menu1,index) in $store.state.base.menu" :index="index" v-if="menu1.children">
+      <template slot="title"><i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}
 </template>
-      <el-menu-item index="/customer/list">选项1</el-menu-item>
-      <el-menu-item index="/password">选项2</el-menu-item>
-      <el-menu-item index="/dashboard">选项3</el-menu-item>
+      <el-menu-item v-for="menu2 in menu1.children" :index="menu2.path">{{menu2.name}}</el-menu-item>
     </el-submenu>
-    <el-submenu index="2">
-      <template slot="title">
-<i class="el-icon-message"></i>
-导航一
-</template>
-      <el-menu-item index="2-1">选项1</el-menu-item>
-      <el-menu-item index="2-2">选项2</el-menu-item>
-      <el-menu-item index="2-3">选项3</el-menu-item>
-    </el-submenu>
-    <el-submenu index="3">
-      <template slot="title">
-<i class="el-icon-message"></i>
-导航一
-</template>
-      <el-menu-item index="3-1">选项1</el-menu-item>
-      <el-menu-item index="3-2">选项2</el-menu-item>
-      <el-menu-item index="3-3">选项3</el-menu-item>
-    </el-submenu>
-  </el-menu>
+    <el-menu-item :index="menu1.path" v-else><i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}</el-menu-item>
 </div>
 </template>
 

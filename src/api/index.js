@@ -10,9 +10,4 @@ export default {
       ...payload
     })
   }
-    // login: function(data) {
-    //   return AuthResource.save({
-    //     action: 'login'
-    //   }, data)
-    // }
 }

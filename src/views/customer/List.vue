@@ -65,21 +65,4 @@ export default {
 }
 </script>
 
-<style lang="scss">@import '../../assets/styles/fn.scss';
-.el-pagination {
-    text-align: right;
-    padding-top: $global-gap*2;
-}
-td {
-    position: relative;
-}
-.el-row {
-    padding-bottom: $global-gap*2;
-    > * {
-        float: left;
-    }
-}
-.el-input-group {
-    padding-right: $global-gap*2;
-}
-</style>
+<style lang="scss">@import '../../assets/styles/fn.scss';</style>

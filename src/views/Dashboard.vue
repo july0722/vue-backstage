@@ -15,19 +15,12 @@
     <el-button type="danger" icon="delete" v-popover:popover5>批量删除</el-button>
   </el-row>
   <el-table :data="tableData" selection-mode="multiple" border @selectionchange="handleSelectionChange">
-    <el-table-column type="selection" width="50">
-    </el-table-column>
-    <el-table-column property="date" label="日期" sortable>
-    </el-table-column>
-    <el-table-column property="name" label="姓名">
-    </el-table-column>
-    <el-table-column property="address" label="地址" :show-tooltip-when-overflow="true">
-    </el-table-column>
+    <el-table-column type="selection" width="50"></el-table-column>
+    <el-table-column property="date" label="日期" sortable></el-table-column>
+    <el-table-column property="name" label="姓名"></el-table-column>
+    <el-table-column property="address" label="地址" :show-tooltip-when-overflow="true"></el-table-column>
     <el-table-column inline-template label="操作" width="120">
-      <div class="">
-        <el-button size="small" type="text">编辑</el-button>
-        <el-button size="small" type="text">删除</el-button>
-      </div>
+      <el-button size="small" type="text">编辑</el-button>
     </el-table-column>
   </el-table>
   <el-pagination :current-page="5" :page-sizes="[15, 30, 50, 100]" :page-size="15" layout="total, sizes, prev, pager, next, jumper" :total="100"></el-pagination>
@@ -78,8 +71,9 @@ td {
     > * {
         float: left;
     }
-}
-.el-input-group {
-    padding-right: $global-gap*2;
+     > .el-input-group,
+    > .el-button {
+        margin-right: $global-gap/2;
+    }
 }
 </style>

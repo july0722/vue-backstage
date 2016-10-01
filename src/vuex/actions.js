@@ -10,16 +10,6 @@ export const login = async({
   })
   commit(types.AUTH_LOGIN, response.data)
   return response.data
-    // return new Promise((resolve, reject) => {
-    //   api.login({
-    //     ...payload
-    //   }).then((response) => {
-    //     commit(types.AUTH_LOGIN, response.data)
-    //     return resolve(response.data)
-    //   }).catch((error) => {
-    //     return reject(error)
-    //   })
-    // })
 }
 
 export const logout = ({

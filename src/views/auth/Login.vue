@@ -52,6 +52,7 @@ export default {
             account: this.ruleForm.account,
             password: this.ruleForm.password
           }).then((response) => {
+            console.log(this.$route)
             this.$router.push(this.$route.query.redirect || '/dashboard')
           })
         }
