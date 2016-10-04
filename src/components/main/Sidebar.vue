@@ -1,7 +1,7 @@
 <template>
 <div class="main-sidebar">
-  <el-menu :router="true" :default-active="$store.state.base.menu[0].path">
-    <el-submenu v-for="(menu1,index) in $store.state.base.menu" :index="index" v-if="menu1.children">
+  <el-menu :router="true" :default-active="currentMenu[0].path">
+    <el-submenu v-for="(menu1,index) in currentMenu" :index="index" v-if="menu1.children">
       <template slot="title"><i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}
 </template>
       <el-menu-item v-for="menu2 in menu1.children" :index="menu2.path">{{menu2.name}}</el-menu-item>
@@ -11,7 +11,15 @@
 </template>
 
 <script>
+import {
+  mapGetters
+} from 'vuex'
 export default {
+  computed: {
+    ...mapGetters([
+      'currentMenu'
+    ])
+  },
   data() {
     return {}
   },

@@ -23,7 +23,7 @@
       <el-button size="small" type="text">编辑</el-button>
     </el-table-column>
   </el-table>
-  <el-pagination :current-page="5" :page-sizes="[15, 30, 50, 100]" :page-size="15" layout="total, sizes, prev, pager, next, jumper" :total="100"></el-pagination>
+  <el-pagination :current-page="5" :page-sizes="[15, 30, 50, 100]" :page-size="15" layout="total, sizes, prev, pager, next, jumper" :total="1000"></el-pagination>
   <!-- <div class="">
     <el-popover ref="popover1" placement="top" width="160" v-model="visible2">
       <p>这是一段内容这是一段内容确定删除吗？</p>
@@ -61,7 +61,7 @@ export default {
 <style lang="scss">@import '../assets/styles/fn.scss';
 .el-pagination {
     text-align: right;
-    padding-top: $global-gap*2;
+    padding: $global-gap*2 0 0;
 }
 td {
     position: relative;
@@ -71,8 +71,8 @@ td {
     > * {
         float: left;
     }
-     > .el-input-group,
-    > .el-button {
+     > .el-button,
+    > .el-input-group {
         margin-right: $global-gap/2;
     }
 }

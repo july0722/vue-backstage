@@ -1,6 +1,6 @@
 # backstage
 
-> backstage for vue
+> test backstage for vue2 + vuex + vue-router + element-ui 
 
 ## Build Setup
 
