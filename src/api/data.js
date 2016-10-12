@@ -19,7 +19,7 @@ Mock.mock(/\/api\/auth\/log/, {
     icon: 'setting',
     children: [{
       name: '账号管理',
-      path: '/dd'
+      path: '/list'
     }, {
       name: '菜单管理',
       path: '/password'

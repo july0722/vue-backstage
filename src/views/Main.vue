@@ -29,7 +29,8 @@ export default {
 }
 </script>
 
-<style lang="scss">@import '../assets/styles/fn.scss';
+<style lang="scss">
+@import '../assets/styles/fn.scss';
 .main {
     &-wrapper {
         margin-left: $global-sidebar-width;
@@ -45,4 +46,3 @@ export default {
     }
 }
 </style>
-e>

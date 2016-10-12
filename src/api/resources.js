@@ -20,4 +20,5 @@ Vue.http.interceptors.push((request, next) => {
   })
 })
 
-export const AuthResource = Vue.resource('auth{/action}')
+export const AuthResource = Vue.resource('auth/{action}')
+export const SystemResource = Vue.resource('system/{action}')

@@ -1,12 +1,11 @@
 <template>
 <div class="main-sidebar">
-  <el-menu :router="true" :default-active="currentMenu[0].path">
-    <el-submenu v-for="(menu1,index) in currentMenu" :index="index" v-if="menu1.children">
-      <template slot="title"><i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}
-</template>
+  <el-menu :router="true" default-active="/list">
+    <el-submenu v-if="menu1.children" v-for="(menu1,index) in currentMenu" :index="menu1.path">
+      <template slot="title"><i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}</template>
       <el-menu-item v-for="menu2 in menu1.children" :index="menu2.path">{{menu2.name}}</el-menu-item>
     </el-submenu>
-    <el-menu-item :index="menu1.path" v-else><i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}</el-menu-item>
+    <el-menu-item v-else :index="menu1.path"><i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}</el-menu-item>
 </div>
 </template>
 
@@ -14,6 +13,7 @@
 import {
   mapGetters
 } from 'vuex'
+
 export default {
   computed: {
     ...mapGetters([
@@ -27,7 +27,9 @@ export default {
 }
 </script>
 
-<style lang="scss">@import '../../assets/styles/fn.scss';
+<style lang="scss">
+@import '../../assets/styles/fn.scss';
+
 .main-sidebar {
     position: fixed;
     top: $global-navbar-height;
