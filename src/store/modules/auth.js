@@ -6,7 +6,7 @@ const state = {
 }
 
 const mutations = {
-  [types.AUTH_LOGIN](state, {
+  [types.AUTH_LOGIN] (state, {
     user,
     menu
   }) {
@@ -15,7 +15,7 @@ const mutations = {
     window.sessionStorage.setItem('backstage_auth_user', JSON.stringify(user))
     window.sessionStorage.setItem('backstage_auth_menu', JSON.stringify(menu))
   },
-  [types.AUTH_LOGOUT](state) {
+  [types.AUTH_LOGOUT] (state) {
     state.user = null
     state.menu = null
     window.sessionStorage.removeItem('backstage_auth_user')

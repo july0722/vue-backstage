@@ -6,14 +6,14 @@ import './data'
 
 export default {
   // AuthResource
-  login: function(payload) {
+  login: function (payload) {
     return AuthResource.get({
       action: 'login',
       ...payload
     })
   },
   // SystemResource
-  fetchUserList: function(payload) {
+  fetchUserList: function (payload) {
     return SystemResource.get({
       action: 'user/fetchList',
       ...payload
