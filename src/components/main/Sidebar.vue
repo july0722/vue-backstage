@@ -1,7 +1,7 @@
 <template>
 <div class="main-sidebar">
   <el-menu :router="true" default-active="/list">
-    <el-submenu v-if="menu1.children" v-for="(menu1,index) in currentMenu" :index="menu1.path">
+    <el-submenu v-if="menu1.children" v-for="(menu1,index) in currentMenu" :index="menu1.children[0].path">
       <template slot="title"><i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}</template>
       <el-menu-item v-for="menu2 in menu1.children" :index="menu2.path">{{menu2.name}}</el-menu-item>
     </el-submenu>

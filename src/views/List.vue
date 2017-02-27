@@ -14,16 +14,18 @@
     </el-popover>
     <el-button type="danger" icon="delete" :disabled="multipleSelection.length == 0" v-popover:popoverDelete>批量删除</el-button>
   </el-row>
-  <el-table selection-mode="multiple" border :data="table.data" @selectionchange="handleSelectionChange">
+  <el-table selection-mode="multiple" border :data="table.data" @selection-change="handleSelectionChange">
     <el-table-column type="selection" width="50"></el-table-column>
     <el-table-column property="date" label="日期" sortable></el-table-column>
     <el-table-column property="name" label="姓名"></el-table-column>
-    <el-table-column property="address" label="地址" :show-tooltip-when-overflow="true"></el-table-column>
+    <el-table-column property="address" label="地址" show-tooltip-when-overflow></el-table-column>
     <el-table-column inline-template label="操作" width="78">
-      <el-button size="small" type="text">编辑</el-button>
+      <div class="">
+        <el-button size="small" type="text">编辑</el-button>
+      </div>
     </el-table-column>
   </el-table>
-  <el-pagination layout="total, sizes, prev, pager, next, jumper" :current-page="table.currentPage" :page-sizes="[15, 30, 50, 100]" :page-size="table.pageSize" :total="table.total" @sizechange="handleSizeChange" @currentchange="handleCurrentChange"></el-pagination>
+  <el-pagination layout="total, sizes, prev, pager, next, jumper" :current-page="table.currentPage" :page-sizes="[15, 30, 50, 100]" :page-size="table.pageSize" :total="table.total" @size-change="handleSizeChange" @current-change="handleCurrentChange"></el-pagination>
 </div>
 </template>
 

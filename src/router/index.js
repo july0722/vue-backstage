@@ -1,51 +1,15 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import store from '../vuex/store'
+import Router from 'vue-router'
+import Hello from '@/components/Hello'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const router = new VueRouter({
-  mode: 'history',
-  scrollBehavior: () => ({
-    y: 0
-  }),
-  routes: [{
-    path: '/',
-    redirect: '/login',
-    component: require('../views/Main.vue'),
-    children: [{
-      path: '/dashboard',
-      component: require('../views/Dashboard.vue')
-    }, {
-      path: '/password',
-      component: require('../views/auth/Password.vue')
-    }, {
-      path: '/list',
-      component: require('../views/List.vue')
-    }]
-  }, {
-    path: '/login',
-    component: require('../views/auth/Login.vue')
-  }, {
-    path: '/logout',
-    beforeEnter(to, from, next) {
-      store.dispatch('logout')
-      next('/')
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Hello',
+      component: Hello
     }
-  }]
+  ]
 })
-
-router.beforeEach((to, from, next) => {
-  if (!store.getters.loggedIn && to.path !== '/login') {
-    next({
-      path: '/login',
-      query: {
-        redirect: to.fullPath
-      }
-    })
-  } else {
-    next()
-  }
-})
-
-export default router
