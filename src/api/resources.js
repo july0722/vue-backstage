@@ -1,24 +1,23 @@
-import Vue from 'vue'
-import VueResource from 'vue-resource'
-import NProgress from 'nprogress'
+import axios from 'axios'
 
-Vue.use(VueResource)
-
-Vue.http.options.root = '/api'
-Vue.http.options.emulateHTTP = true
-Vue.http.options.emulateJSON = true
-
-NProgress.configure({
-  showSpinner: false
+// Add a request interceptor
+axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  return config
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error)
 })
 
-Vue.http.interceptors.push((request, next) => {
-  NProgress.start()
-  next((response) => {
-    response.data = JSON.parse(response.data)
-    NProgress.done()
-  })
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+  // Do something with response data
+  return response
+}, function (error) {
+  // Do something with response error
+  return Promise.reject(error)
 })
 
-export const AuthResource = Vue.resource('auth/{action}')
-export const SystemResource = Vue.resource('system/{action}')
+export const AuthResource = axios.create({
+  baseURL: 'https://api.example.com'
+})

@@ -1,11 +1,12 @@
 <template>
-<div class="main-sidebar">
-  <el-menu :router="true" default-active="/list">
-    <el-submenu v-if="menu1.children" v-for="(menu1,index) in currentMenu" :index="menu1.children[0].path">
+<div class="main--sidebar">
+  <el-menu :router="true" :default-active="currentRouter">
+    <el-submenu v-if="menu1.children" v-for="(menu1, index) in currentMenu" :key="index" :index="menu1.children[0].path">
       <template slot="title"><i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}</template>
-      <el-menu-item v-for="menu2 in menu1.children" :index="menu2.path">{{menu2.name}}</el-menu-item>
+      <el-menu-item v-for="(menu2, index) in menu1.children" :key="index" :index="menu2.path">{{menu2.name}}</el-menu-item>
     </el-submenu>
     <el-menu-item v-else :index="menu1.path"><i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}</el-menu-item>
+  </el-menu>
 </div>
 </template>
 
@@ -20,17 +21,18 @@ export default {
       'currentMenu'
     ])
   },
-  data() {
-    return {}
+  data () {
+    return {
+      currentRouter: this.$router.history.current.fullPath
+    }
   },
   methods: {}
 }
 </script>
 
 <style lang="scss">
-@import '../../assets/styles/fn.scss';
-
-.main-sidebar {
+@import '../../assets/styles/base.scss';
+.main--sidebar {
     position: fixed;
     top: $global-navbar-height;
     left: 0;

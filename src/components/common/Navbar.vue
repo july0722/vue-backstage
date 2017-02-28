@@ -1,8 +1,8 @@
 <template>
-<div class="main-navbar">
+<div class="main--navbar">
   <el-dropdown>
     <span class="el-dropdown-link">
-      {{currentUser.name}}<i class="el-icon-caret-bottom el-icon-right"></i>
+      管理员<i class="el-icon-caret-bottom el-icon-right"></i>
     </span>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item>
@@ -17,17 +17,17 @@
 </template>
 
 <script>
-import {
-  mapGetters
-} from 'vuex'
+// import {
+//   mapGetters
+// } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters([
-      'currentUser'
-    ])
-  },
-  data() {
+  // computed: {
+  //   ...mapGetters([
+  //     'currentUser'
+  //   ])
+  // },
+  data () {
     return {
 
     }
@@ -37,9 +37,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/styles/fn.scss';
-
-.main-navbar {
+@import '../../assets/styles/base.scss';
+.main--navbar {
   position: fixed;
   height: $global-navbar-height;
   background: #324057;
