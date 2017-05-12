@@ -10,7 +10,6 @@ export default {
 }
 </script>
 
-<style>
 <style lang="scss">
 @import '~normalize.css';
 @import '~element-ui/lib/theme-default/index.css';
