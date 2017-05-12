@@ -1,4 +1,4 @@
-# hello-vue
+# vue-backstage
 
 > A Vue.js project
 

@@ -16,6 +16,7 @@ import {
 } from 'vuex'
 
 export default {
+  name: 'sidebar',
   computed: {
     ...mapGetters([
       'currentMenu'
