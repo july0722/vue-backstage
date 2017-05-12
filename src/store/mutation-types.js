@@ -1,2 +1,2 @@
-export const AUTH_LOGIN = 'AUTH_LOGIN'
-export const AUTH_LOGOUT = 'AUTH_LOGOUT'
+export const RECORD_AUTH_USER = 'RECORD_AUTH_USER'
+export const RECORD_AUTH_MENU = 'RECORD_AUTH_MENU'

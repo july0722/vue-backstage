@@ -1,11 +1,10 @@
 export function datetime(date, format = 'yyyy-MM-dd HH:mm:ss') {
-  date = date === undefined ? new Date() : date
-  if (date === undefined) {
-    date = new Date()
-  } else if (typeof date === 'string') {
-    date = new Date(Number(date.replace(/\/Date\((\d+)\)\//, '$1')))
+  if (!date) {
+    return ''
   }
-  var obj = {
+  typeof date === 'string' && (date = +date.replace(/\/Date\((\d+)\)\//, '$1'))
+  typeof date === 'number' && (date = new Date(date))
+  let obj = {
     // yyyy-MM-dd 第q季度 www HH:mm:ss:SSS
     'y': date.getFullYear(), // 年份，注意必须用getFullYear
     'M': date.getMonth() + 1, // 月份，注意是从0-11
@@ -18,12 +17,12 @@ export function datetime(date, format = 'yyyy-MM-dd HH:mm:ss') {
     's': date.getSeconds(), // 秒
     'S': date.getMilliseconds() // 毫秒
   }
-  var week = ['日', '一', '二', '三', '四', '五', '六']
-  for (var i in obj) {
-    format = format.replace(new RegExp(i + '+', 'g'), function(m) {
-      var val = obj[i] + ''
-      if (i === 'w') return (m.length > 2 ? '星期' : '周') + week[val]
-      for (var j = 0, len = val.length; j < m.length - len; j++) val = '0' + val
+  let _week = ['日', '一', '二', '三', '四', '五', '六']
+  for (let i in obj) {
+    format = format.replace(new RegExp(i + '+', 'g'), m => {
+      let val = obj[i] + ''
+      if (i === 'w') return (m.length > 2 ? '星期' : '周') + _week[val]
+      for (let j = 0, len = val.length; j < m.length - len; j++) val = '0' + val
       return m.length === 1 ? val : val.substring(val.length - m.length)
     })
   }

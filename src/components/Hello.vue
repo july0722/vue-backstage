@@ -6,16 +6,17 @@
 
 <script>
 export default {
+  name: 'hello',
   data () {
     return {
-      msg: 'Hello Vue!'
+      msg: 'Welcome to Your Vue.js App'
     }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 h1 {
   color: #42b983;
 }
