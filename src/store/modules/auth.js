@@ -13,27 +13,31 @@ const getters = {
 }
 
 const actions = {
-  login: async({commit, state}, payload) => {
+  login: async({
+    commit,
+    state
+  }, payload) => {
     const response = await auth.login(payload)
     if (response.successful) {
       commit(types.RECORD_AUTH_USER, response.data.user)
       commit(types.RECORD_AUTH_MENU, response.data.menu)
     }
     return response
+  },
+  logout: ({
+    commit,
+    state
+  }) => {
+    commit(types.RECORD_AUTH_USER, {})
+    commit(types.RECORD_AUTH_MENU, [])
   }
-  // logout: async({commit, state}) => {
-  //   const response = api.logout(state.user.loginname)
-  //   window.sessionStorage.clear()
-  //   window.location.reload()
-  //   return response
-  // }
 }
 
 const mutations = {
-  [types.RECORD_AUTH_USER] (state, user) {
+  [types.RECORD_AUTH_USER](state, user) {
     state.user = user
   },
-  [types.RECORD_AUTH_MENU] (state, menu) {
+  [types.RECORD_AUTH_MENU](state, menu) {
     state.menu = menu
   }
 }

@@ -51,7 +51,7 @@ export default {
         if (valid) {
           this.loading = true
           this.login({
-            loginname: this.form.account,
+            account: this.form.account,
             password: this.form.password
           }).then(response => {
             if (response.successful) {

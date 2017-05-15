@@ -1,17 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import hello from '@/components/hello'
+import store from '@/store'
+
+import login from '@/views/auth/login'
 
 Vue.use(VueRouter)
-// { path: '/', component: require('./views/\/index') },
+
 const router = new VueRouter({
-  routes: [
-    {
-      path: '/',
-      name: 'hello',
-      component: hello
+  routes: [{
+    path: '/login',
+    name: 'login',
+    component: login
+  }, {
+    path: '/logout',
+    beforeEnter(to, from, next) {
+      store.dispatch('logout')
+      next('/')
     }
-  ]
+  }, {
+    path: '/',
+    redirect: '/login'
+  }]
 })
 
 // router.beforeEach((to, from, next) => {

@@ -16,13 +16,13 @@
 </template>
 
 <script>
-import Navbar from '@/components/common/Navbar.vue'
-import Sidebar from '@/components/common/Sidebar.vue'
+import navbar from '@/components/layout/navbar'
+import sidebar from '@/components/layout/sidebar'
 
 export default {
   components: {
-    Navbar,
-    Sidebar
+    navbar,
+    sidebar
   },
   data () {
     return {}

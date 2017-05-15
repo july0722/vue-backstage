@@ -15,7 +15,7 @@ axios.interceptors.request.use(config => {
 })
 
 axios.interceptors.response.use(response => {
-  response.successful = response.data.status === 'SUCCESS'
+  response.successful = response.data.code === 1000
   response.config.method === 'post' && (response.successful ? Notification.success({ title: '成功', message: '操作成功！' })
     : Notification.error({ title: '失败', message: response.data.msg }))
   return response
