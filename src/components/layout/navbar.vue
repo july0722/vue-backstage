@@ -42,20 +42,19 @@ export default {
 @import '../../assets/styles/index.scss';
 .navbar {
   position: fixed;
-  height: $global-navbar-height;
+  height: $layout-navbar-height;
   background: #324057;
   min-width: 100%;
   z-index: 2;
-  box-shadow: 0 2px 3px hsla(0, 0%, 7%, .1), 0 0 0 1px hsla(0, 0%, 7%, .1);
   .el-dropdown {
     color: #fff;
     float: right;
     padding: 0 $global-gap*3;
-    height: $global-navbar-height;
-    line-height: $global-navbar-height;
+    height: $layout-navbar-height;
+    line-height: $layout-navbar-height;
   }
   .el-icon-caret-bottom:before {
-    line-height: $global-navbar-height;
+    line-height: $layout-navbar-height;
   }
   .el-dropdown-item a {
     display: block;

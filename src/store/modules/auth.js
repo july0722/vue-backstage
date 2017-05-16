@@ -1,5 +1,5 @@
 import * as types from '../mutation-types'
-import auth from '@/api/auth'
+import * as api from '@/api/auth'
 
 const state = {
   user: {},
@@ -8,7 +8,7 @@ const state = {
 
 const getters = {
   currentUser: state => state.user,
-  currentMenu: state => state.permlist,
+  currentMenu: state => state.menu,
   loggedIn: state => !!state.user.id
 }
 
@@ -17,7 +17,7 @@ const actions = {
     commit,
     state
   }, payload) => {
-    const response = await auth.login(payload)
+    const response = await api.login(payload)
     if (response.successful) {
       commit(types.RECORD_AUTH_USER, response.data.user)
       commit(types.RECORD_AUTH_MENU, response.data.menu)

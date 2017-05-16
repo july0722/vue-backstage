@@ -43,8 +43,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'login',
-      'fetchDevice'
+      'login'
     ]),
     handleSubmit() {
       this.$refs.form.validate(valid => {

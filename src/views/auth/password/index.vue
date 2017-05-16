@@ -5,20 +5,20 @@
         <el-input v-model="form.oldPwd"></el-input>
       </el-form-item>
       <el-form-item required label="新密码" prop="newPwd">
-        <el-input type="password" v-model="form.newPwd" auto-complete="off"></el-input>
+        <el-input type="password" v-model="form.newPwd" auto-complete="new-pwd"></el-input>
       </el-form-item>
       <el-form-item required label="确认密码" prop="checkPwd">
-        <el-input type="password" v-model="form.checkPwd" auto-complete="off"></el-input>
+        <el-input type="password" v-model="form.checkPwd" auto-complete="check-pwd"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" :loading="loading" @click.native="handleSubmit">提交</el-button>
+        <el-button type="primary" :loading="loading" @click="handleSubmit">提交</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-import api from '@/api'
+import * as api from '@/api/auth'
 import {
   mapGetters
 } from 'vuex'
@@ -74,12 +74,12 @@ export default {
     }
   },
   methods: {
-    handleSubmit () {
+    handleSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.loading = true
           api.updatePassword({
-            loginname: this.currentUser.loginname,
+            account: this.currentUser.account,
             oldPwd: this.form.oldPwd,
             newPwd: this.form.newPwd
           }).then(response => {
@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../assets/styles/base.scss';
+@import '../../../assets/styles/index.scss';
 
 .password {
   .el-input {

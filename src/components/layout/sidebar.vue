@@ -37,10 +37,10 @@ export default {
 @import '../../assets/styles/index.scss';
 .sidebar {
   position: fixed;
-  top: $global-navbar-height;
+  top: $layout-navbar-height;
   left: 0;
   bottom: 0;
-  width: $global-sidebar-width;
+  width: $layout-sidebar-width;
   max-height: 100vh;
   height: 100%;
   z-index: 1;
