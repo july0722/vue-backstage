@@ -20,7 +20,7 @@ const actions = {
     const response = await api.login(payload)
     if (response.successful) {
       commit(types.RECORD_AUTH_USER, response.data.user)
-      commit(types.RECORD_AUTH_MENU, response.data.menu)
+      // commit(types.RECORD_AUTH_MENU, response.data.menu)
     }
     return response
   },

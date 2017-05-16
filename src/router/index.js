@@ -16,7 +16,6 @@ router.beforeEach((to, from, next) => {
   if (store.getters.loggedIn) {
     next()
   } else {
-    debugger
     if (whiteList.includes(to.path)) {
       next()
     } else {
@@ -32,9 +31,9 @@ router.beforeEach((to, from, next) => {
 
 router.addRoutes([{
   path: '*',
-  redirect: '/error/404'
+  redirect: '/error'
 }, {
-  path: '/error/:code',
+  path: '/error',
   component: error
 }, {
   path: '/login',
