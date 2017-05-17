@@ -6,11 +6,7 @@
 
 <script>
 export default {
-  name: 'error',
-  data() {
-    return {
-    }
-  }
+  name: 'error'
 }
 </script>
 

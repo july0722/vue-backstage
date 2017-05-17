@@ -1,5 +1,4 @@
 $global-gap: 8px;
-$global-breadcrumb-height: $global-gap * 6;
 $global-border-radius: 4px;
 $global-border-color: #d1dbe5;
 $global-input-width: $global-gap * 40;
@@ -7,6 +6,7 @@ $global-input-label-width: $global-gap * 15;
 
 $layout-sidebar-width: $global-gap * 28;
 $layout-navbar-height: $global-gap * 8;
+$layout-breadcrumb-height: $global-gap * 6;
 
 $color-primary: #20a0ff;
 $color-info: #50bfff;

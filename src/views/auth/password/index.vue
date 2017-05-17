@@ -84,6 +84,8 @@ export default {
             newPwd: this.form.newPwd
           }).then(response => {
             response.successful ? this.$router.push('/logout') : this.loading = false
+          }).catch(() => {
+            this.loading = false
           })
         }
       })

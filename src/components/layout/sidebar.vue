@@ -1,13 +1,15 @@
 <template>
   <div class="sidebar">
     <el-menu :router="true" :default-active="currentRouter">
-      <el-submenu v-if="menu1.children" v-for="(menu1, index) in currentMenu" :key="index" :index="menu1.children[0].path">
+      <el-submenu v-if="permission1.children" v-for="(permission1, index) in currentPermissions" :key="index" :index="permission1.children[0].path">
         <template slot="title">
-          <i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}</template>
-        <el-menu-item v-for="(menu2, index) in menu1.children" :key="index" :index="menu2.path">{{menu2.name}}</el-menu-item>
+          <i :class="`iconfont icon-${permission1.icon}`"></i>{{permission1.name}}
+        </template>
+        <el-menu-item v-for="(permission2, index) in permission1.children" :key="index" :index="permission2.path">{{permission2.name}}</el-menu-item>
       </el-submenu>
-      <el-menu-item v-else :index="menu1.path">
-        <i :class="`el-icon-${menu1.icon}`"></i>{{menu1.name}}</el-menu-item>
+      <el-menu-item v-else :index="permission1.path">
+        <i :class="`iconfont icon-${permission1.icon}`"></i>{{permission1.name}}
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -21,31 +23,29 @@ export default {
   name: 'sidebar',
   computed: {
     ...mapGetters([
-      'currentMenu'
+      'currentPermissions'
     ])
   },
   data() {
     return {
       currentRouter: this.$router.history.current.fullPath
     }
-  },
-  methods: {}
+  }
 }
 </script>
 
 <style lang="scss">
 @import '../../assets/styles/index.scss';
 .sidebar {
-  position: fixed;
+  box-sizing: border-box;
+  position: absolute;
   top: $layout-navbar-height;
   left: 0;
   bottom: 0;
   width: $layout-sidebar-width;
-  max-height: 100vh;
-  height: 100%;
-  z-index: 1;
+  z-index: 2;
   background: #fff;
-  box-shadow: 0 2px 3px hsla(0, 0%, 7%, .1), 0 0 0 1px hsla(0, 0%, 7%, .1);
+  border-right: 1px solid $global-border-color;
   overflow-y: auto;
   overflow-x: hidden;
   .el-menu {

@@ -4,7 +4,14 @@ export function login() {
     user: {
       id: 1,
       account: 'test',
-      name: '我是测试'
-    }
+      username: '我是测试'
+    },
+    permissions: [{
+      name: '系统管理',
+      children: [{
+        name: '用户管理',
+        path: '/user'
+      }]
+    }]
   }
 }

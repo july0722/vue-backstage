@@ -2,7 +2,7 @@
   <div class="navbar">
     <el-dropdown>
       <span class="el-dropdown-link">
-        管理员
+        {{currentUser.username}}
         <i class="el-icon-caret-bottom el-icon-right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
@@ -18,40 +18,35 @@
 </template>
 
 <script>
-// import {
-//   mapGetters
-// } from 'vuex'
+import {
+  mapGetters
+} from 'vuex'
 
 export default {
   name: 'navbar',
-  // computed: {
-  //   ...mapGetters([
-  //     'currentUser'
-  //   ])
-  // },
-  data() {
-    return {
-
-    }
-  },
-  methods: {}
+  computed: {
+    ...mapGetters([
+      'currentUser'
+    ])
+  }
 }
 </script>
 
 <style lang="scss">
 @import '../../assets/styles/index.scss';
 .navbar {
-  position: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   height: $layout-navbar-height;
+  line-height: $layout-navbar-height;
   background: #324057;
-  min-width: 100%;
   z-index: 2;
   .el-dropdown {
     color: #fff;
     float: right;
     padding: 0 $global-gap*3;
-    height: $layout-navbar-height;
-    line-height: $layout-navbar-height;
   }
   .el-icon-caret-bottom:before {
     line-height: $layout-navbar-height;

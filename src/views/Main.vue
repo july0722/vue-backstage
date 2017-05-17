@@ -2,15 +2,9 @@
   <div class="main">
     <navbar></navbar>
     <sidebar></sidebar>
+    <breadcrumb></breadcrumb>
     <div class="view-container">
       <router-view class="view"></router-view>
-      <!-- <el-breadcrumb separator="/">
-          <el-breadcrumb-item>首页</el-breadcrumb-item>
-          <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-        </el-breadcrumb>
-        <transition mode="out-in" enter-active-class="fadeIn" leave-active-class="fadeOut" appear>
-          <router-view class="main-view animated"></router-view>
-        </transition> -->
     </div>
   </div>
 </template>
@@ -18,15 +12,14 @@
 <script>
 import navbar from '@/components/layout/navbar'
 import sidebar from '@/components/layout/sidebar'
+import breadcrumb from '@/components/layout/breadcrumb'
 
 export default {
   name: 'main',
   components: {
     navbar,
-    sidebar
-  },
-  data() {
-    return {}
+    sidebar,
+    breadcrumb
   }
 }
 </script>
@@ -36,15 +29,16 @@ export default {
 .main {
   .view {
     background: #fff;
-    padding: $global-gap*3;
-    box-shadow: 0 2px 3px hsla(0, 0%, 7%, .1), 0 0 0 1px hsla(0, 0%, 7%, .1);
     &-container {
-      margin-left: $layout-sidebar-width;
-      padding: $global-gap*2 + $layout-navbar-height $global-gap*2 $global-gap*2;
+      position: absolute;
+      z-index: 1;
+      top:$layout-breadcrumb-height+$layout-navbar-height;
+      left: $layout-sidebar-width;
+      right: 0;
+      padding: $global-gap*3;
+      height: calc(100% - #{$layout-breadcrumb-height} - #{$layout-navbar-height} - #{$global-gap*6});
+      overflow-y: auto;
     }
-  }
-  .el-breadcrumb {
-    margin-bottom: $global-gap*2;
   }
 }
 </style>

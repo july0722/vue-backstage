@@ -2,8 +2,8 @@
   <div class="login">
     <el-form ref="form" :model="form" :rules="rules">
       <h3>系统登录</h3>
-      <el-form-item prop="loginname">
-        <el-input v-model="form.loginname" placeholder="请输入账号"></el-input>
+      <el-form-item prop="account">
+        <el-input v-model="form.account" placeholder="请输入账号"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input type="password" v-model="form.password" placeholder="请输入密码"></el-input>

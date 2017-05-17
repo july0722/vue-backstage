@@ -3,12 +3,12 @@ import * as api from '@/api/auth'
 
 const state = {
   user: {},
-  menu: []
+  permissions: []
 }
 
 const getters = {
   currentUser: state => state.user,
-  currentMenu: state => state.menu,
+  currentPermissions: state => state.permissions,
   loggedIn: state => !!state.user.id
 }
 
@@ -20,7 +20,7 @@ const actions = {
     const response = await api.login(payload)
     if (response.successful) {
       commit(types.RECORD_AUTH_USER, response.data.user)
-      // commit(types.RECORD_AUTH_MENU, response.data.menu)
+      commit(types.RECORD_AUTH_PERMISSIONS, response.data.permissions)
     }
     return response
   },
@@ -29,7 +29,7 @@ const actions = {
     state
   }) => {
     commit(types.RECORD_AUTH_USER, {})
-    commit(types.RECORD_AUTH_MENU, [])
+    commit(types.RECORD_AUTH_PERMISSIONS, [])
   }
 }
 
@@ -37,8 +37,8 @@ const mutations = {
   [types.RECORD_AUTH_USER](state, user) {
     state.user = user
   },
-  [types.RECORD_AUTH_MENU](state, menu) {
-    state.menu = menu
+  [types.RECORD_AUTH_PERMISSIONS](state, permissions) {
+    state.permissions = permissions
   }
 }
 
