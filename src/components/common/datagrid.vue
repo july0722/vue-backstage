@@ -1,5 +1,22 @@
 <template>
   <div class="datagrid">
+    <!--<div class="datagrid__action">
+      <slot name="action"></slot>
+      <template v-if="remove">
+        <el-popover ref="popover" placement="right" v-model="action.visibleRemove">
+          <p>是否确认删除所勾选的
+            <strong>&nbsp;{{table.multipleSelection.length}}&nbsp;</strong>条记录？</p>
+          <div>
+            <el-button size="mini" type="text" @click="action.visibleRemove = false">取消</el-button>
+            <el-button type="primary" size="mini" @click="handleRemove">确定</el-button>
+          </div>
+        </el-popover>
+        <el-button type="danger" v-popover:popover :disabled="table.multipleSelection.length === 0">删除</el-button>
+      </template>
+    </div>-->
+    <el-row>
+      <slot name="action"></slot>
+    </el-row>
     <el-row v-loading="table.loading">
       <el-table :data="table.data" @selection-change="handleSelectionChange">
         <el-table-column type="selection"></el-table-column>
@@ -14,6 +31,7 @@
 export default {
   name: 'datagrid',
   props: {
+    searchForm: Object,
     fetch: Function,
     beforeFetch: Function
   },
@@ -42,6 +60,7 @@ export default {
     fetchData() {
       this.table.loading = true
       this.fetch({
+        ...this.searchForm,
         page: this.page.currentPage,
         pageSize: this.page.pageSize
       }).then(response => {
@@ -71,9 +90,9 @@ export default {
 <style lang="scss">
 @import '../../assets/styles/index.scss';
 .datagrid {
-  // .el-form--inline .el-form-item {
-  //   margin-bottom: $global-gap * 2;
-  // }
+  .el-form--inline .el-form-item {
+    margin:0 $global-gap/2 $global-gap*2 0;
+  }
   .el-pagination {
     padding: $global-gap 0 0;
   } // &__action:not(:empty) {
