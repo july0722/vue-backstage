@@ -6,6 +6,9 @@
         <el-breadcrumb-item>{{permission.name}}</el-breadcrumb-item>
         <el-breadcrumb-item>{{permission.children.find(c => c.path === $route.path).name}}</el-breadcrumb-item>
       </template>
+      <template v-if="$route.name">
+        <el-breadcrumb-item>{{$route.name}}</el-breadcrumb-item>
+      </template>
     </el-breadcrumb>
   </div>
 </template>

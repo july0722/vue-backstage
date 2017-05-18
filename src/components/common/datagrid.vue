@@ -1,22 +1,24 @@
 <template>
   <div class="datagrid">
-    <!--<div class="datagrid__action">
-      <slot name="action"></slot>
-      <template v-if="remove">
-        <el-popover ref="popover" placement="right" v-model="action.visibleRemove">
-          <p>是否确认删除所勾选的
-            <strong>&nbsp;{{table.multipleSelection.length}}&nbsp;</strong>条记录？</p>
-          <div>
-            <el-button size="mini" type="text" @click="action.visibleRemove = false">取消</el-button>
-            <el-button type="primary" size="mini" @click="handleRemove">确定</el-button>
-          </div>
-        </el-popover>
-        <el-button type="danger" v-popover:popover :disabled="table.multipleSelection.length === 0">删除</el-button>
-      </template>
-    </div>-->
-    <el-row>
-      <slot name="action"></slot>
-    </el-row>
+    <section>
+      <div>
+        <slot name="search"></slot>
+        <el-button v-if="search" type="primary" @click="refresh()">搜索</el-button>
+      </div>
+      <div>
+        <slot name="action"></slot>
+        <template v-if="remove">
+          <el-popover ref="popover" placement="top" v-model="action.visibleRemove">
+            <p>是否确认删除所勾选的<strong>&nbsp;{{table.multipleSelection.length}}&nbsp;</strong>条记录？</p>
+            <div style="text-align:right">
+              <el-button size="mini" type="text" @click="action.visibleRemove = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="handleRemove">确定</el-button>
+            </div>
+          </el-popover>
+          <el-button type="danger" v-popover:popover :disabled="table.multipleSelection.length === 0">删除</el-button>
+        </template>
+      </div>
+    </section>
     <el-row v-loading="table.loading">
       <el-table :data="table.data" @selection-change="handleSelectionChange">
         <el-table-column type="selection"></el-table-column>
@@ -31,12 +33,16 @@
 export default {
   name: 'datagrid',
   props: {
-    searchForm: Object,
+    search: Object,
     fetch: Function,
-    beforeFetch: Function
+    beforeFetch: Function,
+    remove: Function
   },
   data() {
     return {
+      action: {
+        visibleRemove: false
+      },
       table: {
         data: [],
         loading: false,
@@ -51,7 +57,7 @@ export default {
     }
   },
   mounted() {
-    this.load()
+    this.refresh()
   },
   methods: {
     refresh() {
@@ -60,7 +66,7 @@ export default {
     fetchData() {
       this.table.loading = true
       this.fetch({
-        ...this.searchForm,
+        ...this.search,
         page: this.page.currentPage,
         pageSize: this.page.pageSize
       }).then(response => {
@@ -72,6 +78,12 @@ export default {
     },
     load() {
       typeof this.beforeFetch === 'function' ? this.beforeFetch(this.fetchData) : this.fetchData()
+    },
+    handleRemove() {
+      this.action.visibleRemove = false
+      this.remove(this.table.multipleSelection).then(response => {
+        this.refresh()
+      })
     },
     handleCurrentChange(val) {
       this.load()
@@ -90,13 +102,23 @@ export default {
 <style lang="scss">
 @import '../../assets/styles/index.scss';
 .datagrid {
-  .el-form--inline .el-form-item {
-    margin:0 $global-gap/2 $global-gap*2 0;
+  section {
+    font-size: 0;
+    margin-bottom: $global-gap*2;
+    display: flex;
+    justify-content: space-between;
+  }
+  div[class=el-input] {
+    width: initial;
+  }
+  .el-input,.el-button:not(:last-of-type) {
+    margin-right: $global-gap;
+  }
+  .el-button+.el-button {
+    margin-left: 0;
   }
   .el-pagination {
     padding: $global-gap 0 0;
-  } // &__action:not(:empty) {
-  //   padding-bottom: $global-gap * 2;
-  // }
+  }
 }
 </style>

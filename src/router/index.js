@@ -56,6 +56,7 @@ router.addRoutes([{
     component: dashboard
   }, {
     path: '/password',
+    name: '修改密码',
     component: password
   }, {
     path: '/user',

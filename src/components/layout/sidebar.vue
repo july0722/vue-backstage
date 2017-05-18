@@ -47,7 +47,6 @@ export default {
   background: #fff;
   border-right: 1px solid $global-border-color;
   overflow-y: auto;
-  overflow-x: hidden;
   .el-menu {
     border-radius: 0;
     height: 100%;

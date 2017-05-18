@@ -1,10 +1,12 @@
+import Mock from 'mockjs'
+
 export function login() {
-  return {
+  return Mock.mock({
     code: 1000,
     user: {
       id: 1,
       account: 'test',
-      username: '我是测试'
+      username: '@cname'
     },
     permissions: [{
       name: '系统管理',
@@ -13,5 +15,5 @@ export function login() {
         path: '/user'
       }]
     }]
-  }
+  })
 }

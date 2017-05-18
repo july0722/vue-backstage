@@ -1,9 +1,9 @@
 <template>
   <div class="user-editor">
-    <el-dialog :title="`${created ? '编辑' : '新增'}用户`" :visible.sync="visible" size="large" @open="handleOpen">
-      <el-form ref="form" label-width="96px" :model="form">
-        <el-form-item label="备注">
-          <el-input placeholder="请输入备注" v-model="form.note"></el-input>
+    <el-dialog size="large" :title="`${isCreate ? '新增' : '编辑'}用户`" :visible.sync="visible" @open="handleOpen" @close="handleClose">
+      <el-form ref="form" :model="form" :rules="rules">
+        <el-form-item label="用户名" prop="username">
+          <el-input placeholder="请输入用户名" v-model="form.username"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -16,16 +16,13 @@
 
 <script>
 import * as api from '@/api/system'
-import {
-  mapGetters
-} from 'vuex'
 export default {
   name: 'user-editor',
   props: ['model'],
   computed: {
-    ...mapGetters([
-      'currentNode'
-    ])
+    isCreate() {
+      return this.model.id === undefined
+    }
   },
   data() {
     return {
@@ -33,21 +30,37 @@ export default {
       form: {
         username: ''
       },
+      rules: {
+        username: [{
+          required: true,
+          message: '请输入用户名',
+          trigger: 'blur'
+        }]
+      },
       loading: false
     }
   },
   methods: {
     handleSubmit() {
-      let _submit = this.created ? api.updateUser : api.createUser
-      _submit(this.form).then(response => {
-        if (response.successful) {
-          this.visible = false
-          this.$emit('update:model', this.form)
+      this.$refs.form.validate(valid => {
+        if (valid) {
+          let _submit = this.created ? api.createUser : api.updateUser
+          _submit(this.form).then(response => {
+            if (response.successful) {
+              this.visible = false
+              this.$emit('success')
+            }
+          })
         }
       })
     },
     handleOpen() {
-      Object.assign(this.form, this.model)
+      setTimeout(() => {
+        Object.assign(this.form, this.model)
+      }, 0)
+    },
+    handleClose() {
+      this.$refs.form.resetFields()
     }
   }
 }

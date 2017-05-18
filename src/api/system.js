@@ -17,3 +17,7 @@ export function createUser(data) {
 export function updateUser(data) {
   return axios.post(`/updateUser`, data)
 }
+
+export function removeUser(data) {
+  return axios.post(`/removeUser`, data)
+}

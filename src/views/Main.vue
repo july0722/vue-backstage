@@ -28,16 +28,17 @@ export default {
 @import '../assets/styles/index.scss';
 .main {
   .view {
-    background: #fff;
+    padding: $global-gap*3;
+    height: calc(100% - #{$layout-breadcrumb-height});
+    overflow-y: auto;
     &-container {
+      background: #fff;
       position: absolute;
-      z-index: 1;
-      top:$layout-breadcrumb-height+$layout-navbar-height;
-      left: $layout-sidebar-width;
+      top: 0;
+      left: 0;
       right: 0;
-      padding: $global-gap*3;
-      height: calc(100% - #{$layout-breadcrumb-height} - #{$layout-navbar-height} - #{$global-gap*6});
-      overflow-y: auto;
+      bottom: 0;
+      margin: $layout-breadcrumb-height+$layout-navbar-height 0 0  $layout-sidebar-width;
     }
   }
 }

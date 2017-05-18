@@ -1,35 +1,25 @@
 <template>
   <div class="user">
-    <datagrid ref="datagrid" :search-form="form" :fetch="fetch" :beforeFetch="handleBeforeFetch" @fetch="handleFetch">
+    <datagrid ref="datagrid" :search="search" :fetch="fetch" :remove="remove" :beforeFetch="handleBeforeFetch" @fetch="handleFetch">
+      <template slot="search">
+        <el-input v-model="search.username" placeholder="用户名" @keyup.enter.native="$refs.datagrid.refresh()"></el-input>
+        <el-date-picker v-model="search._date" type="daterange" placeholder="日期范围" @change="handleChange"></el-date-picker>
+      </template>
       <template slot="action">
-        <el-form inline>
-          <el-form-item>
-            <el-input v-model="form.username" placeholder="用户名" @keyup.enter.native="$refs.datagrid.refresh()"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-date-picker v-model="form._date" type="daterange" placeholder="日期范围" @change="handleChange"></el-date-picker>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="$refs.datagrid.refresh()">搜索</el-button>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary">新增</el-button>
-            <el-button type="primary">删除</el-button>
-          </el-form-item>
-        </el-form>
+        <el-button type="success" @click="edit()">新增</el-button>
+        <el-button type="info" @click="edit()">绑定</el-button>
       </template>
       <template slot="table">
         <el-table-column prop="date" label="日期"></el-table-column>
         <el-table-column prop="username" label="姓名"></el-table-column>
         <el-table-column label="操作">
           <template scope="scope">
-            <el-button size="small" type="text">编辑</el-button>
-            <el-button size="small" type="text">删除</el-button>
+            <el-button size="small" type="text" @click="edit(scope.row)">编辑</el-button>
           </template>
         </el-table-column>
       </template>
     </datagrid>
-    <editor :model.sync="model"></editor>
+    <editor ref="editor" :model="model" @success="$refs.datagrid.refresh()"></editor>
   </div>
 </template>
 
@@ -46,7 +36,7 @@ export default {
   data() {
     return {
       model: {},
-      form: {
+      search: {
         username: '',
         _date: '',
         beginDate: '',
@@ -56,12 +46,17 @@ export default {
   },
   methods: {
     fetch: api.getUserList,
+    remove: api.removeUser,
+    edit(model = {}) {
+      this.model = model
+      this.$refs.editor.visible = true
+    },
     handleChange() {
-      if (this.form._date[0]) {
-        this.form.beginDate = this.form._date[0].getTime()
-        this.form.endDate = this.form._date[1].getTime()
+      if (this.search._date[0]) {
+        this.search.beginDate = this.search._date[0].getTime()
+        this.search.endDate = this.search._date[1].getTime()
       } else {
-        this.form.beginDate = this.form.endDate = ''
+        this.search.beginDate = this.search.endDate = ''
       }
     },
     handleBeforeFetch(done) {
@@ -76,4 +71,5 @@ export default {
 </script>
 
 <style lang="scss">
+
 </style>
