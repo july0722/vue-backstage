@@ -13,6 +13,9 @@ export function login() {
       children: [{
         name: '用户管理',
         path: '/user'
+      }, {
+        name: '角色管理',
+        path: '/role'
       }]
     }]
   })

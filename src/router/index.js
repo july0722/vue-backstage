@@ -9,17 +9,23 @@ import login from '@/views/auth/login'
 import password from '@/views/auth/password'
 
 import user from '@/views/system/user'
+import role from '@/views/system/role'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter()
 
-const whitelist = ['/login', '/error']
+const loginWhitelist = ['/login', '/error']
+const permissionWhitelist = ['/logout', '/password', '/dashboard'].concat(loginWhitelist)
 router.beforeEach((to, from, next) => {
   if (store.getters.loggedIn) {
-    next()
+    if (permissionWhitelist.includes(to.path) || store.getters.currentPermissions.some(p => p.children.some(c => c.path === to.path))) {
+      next()
+    } else {
+      next('/error')
+    }
   } else {
-    if (whitelist.includes(to.path)) {
+    if (loginWhitelist.includes(to.path)) {
       next()
     } else {
       next({
@@ -61,6 +67,9 @@ router.addRoutes([{
   }, {
     path: '/user',
     component: user
+  }, {
+    path: '/role',
+    component: role
   }]
 }])
 

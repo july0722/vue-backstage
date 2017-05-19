@@ -3,11 +3,9 @@
     <datagrid ref="datagrid" :search="search" :fetch="fetch" :remove="remove" :beforeFetch="handleBeforeFetch" @fetch="handleFetch">
       <template slot="search">
         <el-input v-model="search.username" placeholder="用户名" @keyup.enter.native="$refs.datagrid.refresh()"></el-input>
-        <el-date-picker v-model="search._date" type="daterange" placeholder="日期范围" @change="handleChange"></el-date-picker>
       </template>
       <template slot="action">
         <el-button type="success" @click="edit()">新增</el-button>
-        <el-button type="info" @click="edit()">绑定</el-button>
       </template>
       <template slot="table">
         <el-table-column prop="account" label="账号"></el-table-column>
@@ -26,28 +24,24 @@
         </el-table-column>
       </template>
     </datagrid>
-    <editor ref="editor" :model="model" @success="$refs.datagrid.refresh()"></editor>
+    <!--<editor ref="editor" :model="model" @success="$refs.datagrid.refresh()"></editor>-->
   </div>
 </template>
 
 <script>
 import datagrid from '@/components/common/datagrid'
-import editor from './_editor'
+// import editor from './_editor'
 import * as api from '@/api/system'
 export default {
   name: 'user',
   components: {
-    datagrid,
-    editor
+    datagrid
   },
   data() {
     return {
       model: {},
       search: {
-        username: '',
-        _date: '',
-        beginDate: '',
-        endDate: ''
+        username: ''
       }
     }
   },
@@ -57,14 +51,6 @@ export default {
     edit(model = {}) {
       this.model = model
       this.$refs.editor.visible = true
-    },
-    handleChange() {
-      if (this.search._date[0]) {
-        this.search.beginDate = this.search._date[0].getTime()
-        this.search.endDate = this.search._date[1].getTime()
-      } else {
-        this.search.beginDate = this.search.endDate = ''
-      }
     },
     handleBeforeFetch(done) {
       console.log('handleBeforeFetch')

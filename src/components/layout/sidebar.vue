@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <el-menu :router="true" :default-active="currentRouter">
+    <el-menu :router="true" :default-active="$route.path">
       <el-submenu v-if="permission1.children" v-for="(permission1, index) in currentPermissions" :key="index" :index="permission1.children[0].path">
         <template slot="title">
           <i :class="`iconfont icon-${permission1.icon}`"></i>{{permission1.name}}
@@ -25,11 +25,6 @@ export default {
     ...mapGetters([
       'currentPermissions'
     ])
-  },
-  data() {
-    return {
-      currentRouter: this.$router.history.current.fullPath
-    }
   }
 }
 </script>

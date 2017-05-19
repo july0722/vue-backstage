@@ -1,9 +1,15 @@
 <template>
   <div class="user-editor">
-    <el-dialog size="large" :title="`${isCreate ? '新增' : '编辑'}用户`" :visible.sync="visible" @open="handleOpen" @close="handleClose">
+    <el-dialog size="small" :title="`${isCreate ? '新增' : '编辑'}用户`" :visible.sync="visible" @open="handleOpen" @close="handleClose">
       <el-form ref="form" :model="form" :rules="rules">
+        <el-form-item label="账号" prop="account">
+          <el-input placeholder="请输入账号" v-model="form.account" :disabled="!isCreate"></el-input>
+        </el-form-item>
         <el-form-item label="用户名" prop="username">
           <el-input placeholder="请输入用户名" v-model="form.username"></el-input>
+        </el-form-item>
+        <el-form-item label="状态" prop="status">
+          <el-switch v-model="form.status" on-text="启用" off-text="停用" on-color="#13ce66" :on-value="1" :off-value="0"></el-switch>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -28,16 +34,22 @@ export default {
     return {
       visible: false,
       form: {
-        username: ''
+        account: '',
+        username: '',
+        status: 0
       },
       rules: {
+        account: [{
+          required: true,
+          message: '请输入账号',
+          trigger: 'blur'
+        }],
         username: [{
           required: true,
           message: '请输入用户名',
           trigger: 'blur'
         }]
-      },
-      loading: false
+      }
     }
   },
   methods: {

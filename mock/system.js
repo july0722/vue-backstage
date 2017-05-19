@@ -6,8 +6,10 @@ export function getUserList() {
     count: 30,
     'data|5-10': [{
       'id': '@id',
+      'account': '@word(6, 10)',
       'username': '@cname',
-      'date': '@datetime'
+      'date': '@datetime',
+      'status': '@integer(0, 1)'
     }]
   })
 }
