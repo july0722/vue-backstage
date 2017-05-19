@@ -8,7 +8,17 @@ import {
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
 
 axios.interceptors.request.use(config => {
-  config.method === 'post' && (config.data = querystring.stringify(config.data))
+  console.log(config.url)
+  if (config.method === 'get') {
+    for (let key in config.params) {
+      key.startsWith('_') && delete config.params[key]
+    }
+  } else if (config.method === 'post') {
+    for (let key in config.data) {
+      key.startsWith('_') && delete config.data[key]
+    }
+    config.data = querystring.stringify(config.data)
+  }
   return config
 }, error => {
   return Promise.reject(error)

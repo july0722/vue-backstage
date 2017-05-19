@@ -13,6 +13,7 @@ export default {
 <style lang="scss">
 @import './assets/styles/index.scss';
 @import '~normalize.css';
+@import '~nprogress/nprogress.css';
 @import '~element-ui/lib/theme-default/index.css';
 [class$="-editor"] {
   .el-input,

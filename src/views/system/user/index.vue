@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <datagrid ref="datagrid" :search="search" :fetch="fetch" :remove="remove" :beforeFetch="handleBeforeFetch" @fetch="handleFetch">
+    <datagrid ref="datagrid" :search="search" :fetch="fetch" :remove="remove" :beforeFetch="handleBeforeFetch" @fetch="handleFetch" @init="handleInit">
       <template slot="search">
         <el-input v-model="search.username" placeholder="用户名" @keyup.enter.native="$refs.datagrid.refresh()"></el-input>
         <el-date-picker v-model="search._date" type="daterange" placeholder="日期范围" @change="handleChange"></el-date-picker>
@@ -12,7 +12,7 @@
       <template slot="table">
         <el-table-column prop="account" label="账号"></el-table-column>
         <el-table-column prop="username" label="姓名"></el-table-column>
-        <el-table-column prop="date" label="日期"></el-table-column>
+        <el-table-column :sortable="'custom'" prop="date" label="日期"></el-table-column>
         <el-table-column prop="date" label="状态">
           <template scope="scope">
             <el-tag v-if="scope.row.status === 0" type="gray">停用</el-tag>
@@ -57,6 +57,9 @@ export default {
     edit(model = {}) {
       this.model = model
       this.$refs.editor.visible = true
+    },
+    handleInit({ table }) {
+      table.defaultSort = { prop: 'date', order: 'descending' }
     },
     handleChange() {
       if (this.search._date[0]) {

@@ -20,7 +20,7 @@
       </div>
     </section>
     <el-row v-loading="table.loading">
-      <el-table :data="table.data" @selection-change="handleSelectionChange">
+      <el-table :data="table.data" :default-sort="table.defaultSort" @selection-change="handleSelectionChange" @sort-change="handleSortChange">
         <el-table-column type="selection"></el-table-column>
         <slot name="table"></slot>
       </el-table>
@@ -46,6 +46,7 @@ export default {
       table: {
         data: [],
         loading: false,
+        defaultSort: {},
         multipleSelection: []
       },
       page: {
@@ -55,6 +56,9 @@ export default {
         layout: 'total, ->, prev, pager, next'
       }
     }
+  },
+  created() {
+    this.$emit('init', { table: this.table, page: this.page })
   },
   mounted() {
     this.refresh()
@@ -67,6 +71,7 @@ export default {
       this.table.loading = true
       this.fetch({
         ...this.search,
+        ...this.table.defaultSort,
         page: this.page.currentPage,
         pageSize: this.page.pageSize
       }).then(response => {
@@ -94,6 +99,10 @@ export default {
         this.table.multipleSelection.push(item.id)
       })
       this.$emit('selectionChange', this.table.multipleSelection)
+    },
+    handleSortChange({ prop, order }) {
+      this.table.defaultSort = { prop: prop, order: order }
+      this.refresh()
     }
   }
 }
@@ -108,10 +117,11 @@ export default {
     display: flex;
     justify-content: space-between;
   }
-  div[class=el-input] {
+  div[class="el-input"] {
     width: initial;
   }
-  .el-input,.el-button:not(:last-of-type) {
+  .el-input,
+  .el-button:not(:last-of-type) {
     margin-right: $global-gap;
   }
   .el-button+.el-button {
