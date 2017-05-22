@@ -6,8 +6,8 @@
         <el-date-picker v-model="search._date" type="daterange" placeholder="日期范围" @change="handleChange"></el-date-picker>
       </template>
       <template slot="action">
-        <el-button type="success" @click="edit()">新增</el-button>
-        <el-button type="info" @click="edit()">绑定</el-button>
+        <el-button type="success" @click="edit()">弹窗新增</el-button>
+        <el-button type="success" @click="$router.push('/user/-1')">跳转新增</el-button>
       </template>
       <template slot="table">
         <el-table-column prop="account" label="账号"></el-table-column>
@@ -21,23 +21,26 @@
         </el-table-column>
         <el-table-column label="操作">
           <template scope="scope">
-            <el-button size="small" type="text" @click="edit(scope.row)">编辑</el-button>
+            <el-button size="small" type="text" @click="edit(scope.row)">弹窗编辑</el-button>
+            <el-button size="small" type="text" @click="$router.push(`/user/${scope.row.id}`)">跳转编辑</el-button>
           </template>
         </el-table-column>
       </template>
     </datagrid>
-    <editor ref="editor" :model="model" @success="$refs.datagrid.refresh()"></editor>
+    <_editor ref="editor" :model="model" @success="$refs.datagrid.refresh()"></_editor>
   </div>
 </template>
 
 <script>
 import datagrid from '@/components/common/datagrid'
-import editor from './_editor'
+import _editor from './_editor'
+import editor from './editor'
 import * as api from '@/api/system'
 export default {
   name: 'user',
   components: {
     datagrid,
+    _editor,
     editor
   },
   data() {

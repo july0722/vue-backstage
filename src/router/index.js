@@ -10,6 +10,7 @@ import login from '@/views/auth/login'
 import password from '@/views/auth/password'
 
 import user from '@/views/system/user'
+import userEditor from '@/views/system/user/editor'
 import role from '@/views/system/role'
 
 Vue.use(VueRouter)
@@ -23,7 +24,9 @@ const permissionWhitelist = ['/logout', '/password', '/dashboard'].concat(loginW
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (store.getters.loggedIn) {
-    if (permissionWhitelist.includes(to.path) || store.getters.currentPermissions.some(p => p.children.some(c => c.path === to.path))) {
+    let _path = to.path
+    to.matched[1] && (_path = to.matched[1].path.split('/:')[0])
+    if (permissionWhitelist.includes(_path) || store.getters.currentPermissions.some(p => p.children.some(c => c.path === _path))) {
       next()
     } else {
       next('/error')
@@ -75,6 +78,9 @@ router.addRoutes([{
   }, {
     path: '/user',
     component: user
+  }, {
+    path: '/user/:id',
+    component: userEditor
   }, {
     path: '/role',
     component: role

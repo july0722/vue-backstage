@@ -15,7 +15,7 @@ export default {
 @import '~normalize.css';
 @import '~nprogress/nprogress.css';
 @import '~element-ui/lib/theme-default/index.css';
-[class$="-editor"] {
+[class$=-editor], .view > .el-form {
   .el-input,
   .el-input-number {
     width: $global-input-width;

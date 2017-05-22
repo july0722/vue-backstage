@@ -61,7 +61,7 @@ export default {
     this.$emit('init', { table: this.table, page: this.page })
   },
   mounted() {
-    this.refresh()
+    this.table.defaultSort.prop || this.refresh()
   },
   methods: {
     refresh() {
