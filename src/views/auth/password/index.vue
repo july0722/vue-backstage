@@ -24,13 +24,14 @@ import {
 } from 'vuex'
 
 export default {
+  name: 'password',
   computed: {
     ...mapGetters([
       'currentUser'
     ])
   },
   data() {
-    const validaeNewPwd = (rule, value, callback) => {
+    const validateNewPwd = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入新密码'))
       } else if (value.length < 6) {
@@ -40,7 +41,7 @@ export default {
         callback()
       }
     }
-    const validaeCheckPwd = (rule, value, callback) => {
+    const validateCheckPwd = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入新密码'))
       } else if (value !== this.form.newPwd) {
@@ -62,11 +63,11 @@ export default {
           trigger: 'blur'
         }],
         newPwd: [{
-          validator: validaeNewPwd,
+          validator: validateNewPwd,
           trigger: 'blur'
         }],
         checkPwd: [{
-          validator: validaeCheckPwd,
+          validator: validateCheckPwd,
           trigger: 'blur'
         }]
       },
