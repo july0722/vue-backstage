@@ -8,5 +8,6 @@ Mock.setup({
 
 Mock.mock(/token/, authApi.login)
 
-Mock.mock(/user/, systemApi.getUserList)
-Mock.mock(/user\/*/, systemApi.getUser)
+Mock.mock(/user/, 'get', function(os) {
+  return /\d+/.test(os.url) ? systemApi.getUser() : systemApi.getUserList()
+})
