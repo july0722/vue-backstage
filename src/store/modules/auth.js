@@ -17,7 +17,7 @@ const actions = {
     commit,
     state
   }, payload) => {
-    const response = await api.login(payload)
+    const response = await api.token.post('', payload)
     if (response.successful) {
       commit(types.RECORD_AUTH_USER, response.data.user)
       commit(types.RECORD_AUTH_PERMISSIONS, response.data.permissions)

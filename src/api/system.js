@@ -1,23 +1,5 @@
-import axios from '@/utils/http'
+import {
+  createResource
+} from '@/utils/ajax'
 
-export function getUserList(data) {
-  return axios.get('/getUserList', {
-    params: data
-  })
-}
-
-export function getUser(id) {
-  return axios.get(`/getUser/${id}`)
-}
-
-export function createUser(data) {
-  return axios.post('/createUser', data)
-}
-
-export function updateUser(data) {
-  return axios.post(`/updateUser`, data)
-}
-
-export function removeUser(data) {
-  return axios.post(`/removeUser`, data)
-}
+export const user = createResource('user')

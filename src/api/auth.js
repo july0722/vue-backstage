@@ -1,10 +1,6 @@
-import axios from '@/utils/http'
+import {
+  createResource
+} from '@/utils/ajax'
 
-export function login(data) {
-  return axios.post('/login', data)
-}
-
-export function updatePassword(data) {
-  return axios.post('/updatePassword', data)
-}
-
+export const token = createResource('token')
+export const user = createResource('user')

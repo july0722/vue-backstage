@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <datagrid ref="datagrid" :search="search" :fetch="fetch" :remove="remove" :beforeFetch="handleBeforeFetch" @fetch="handleFetch" @init="handleInit">
+    <datagrid ref="datagrid" :search="search" :resource="resource" :beforeFetch="handleBeforeFetch" @fetch="handleFetch" @init="handleInit">
       <template slot="search">
         <el-input v-model="search.username" placeholder="用户名" @keyup.enter.native="$refs.datagrid.refresh()"></el-input>
         <el-date-picker v-model="search._date" type="daterange" placeholder="日期范围" @change="handleChange"></el-date-picker>
@@ -45,6 +45,7 @@ export default {
   },
   data() {
     return {
+      resource: api.user,
       model: {},
       search: {
         username: '',
@@ -55,8 +56,6 @@ export default {
     }
   },
   methods: {
-    fetch: api.getUserList,
-    remove: api.removeUser,
     edit(model = {}) {
       this.model = model
       this.$refs.editor.visible = true

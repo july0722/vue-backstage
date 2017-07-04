@@ -28,7 +28,8 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    to.params.id === '-1' ? next() : api.getUser(to.params.id).then(response => {
+    to.params.id === '-1' ? next() : api.user.get(to.params.id).then(response => {
+      console.log(response)
       response.successful ? next(vm => {
         Object.assign(vm.form, response.data.user)
       }) : next('/error')
@@ -60,8 +61,7 @@ export default {
     handleSubmit() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          let _submit = this.created ? api.createUser : api.updateUser
-          _submit(this.form).then(response => {
+          api.user[this.isCreate ? 'post' : 'put'](this.isCreate ? '' : `${this.form.id}`, this.form).then(response => {
             if (response.successful) {
               this.$router.go(-1)
             }

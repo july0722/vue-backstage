@@ -56,8 +56,7 @@ export default {
     handleSubmit() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          let _submit = this.created ? api.createUser : api.updateUser
-          _submit(this.form).then(response => {
+          api.user[this.isCreate ? 'post' : 'put'](this.isCreate ? '' : `${this.form.id}`, this.form).then(response => {
             if (response.successful) {
               this.visible = false
               this.$emit('success')

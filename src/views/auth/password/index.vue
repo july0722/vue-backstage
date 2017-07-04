@@ -79,7 +79,7 @@ export default {
       this.$refs.form.validate((valid) => {
         if (valid) {
           this.loading = true
-          api.updatePassword({
+          api.user.put('', {
             account: this.currentUser.account,
             oldPwd: this.form.oldPwd,
             newPwd: this.form.newPwd

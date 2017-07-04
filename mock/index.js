@@ -6,7 +6,7 @@ Mock.setup({
   timeout: '300-500'
 })
 
-Mock.mock(/\/login/, authApi.login)
+Mock.mock(/token/, authApi.login)
 
-Mock.mock(/\/getUserList/, systemApi.getUserList)
-Mock.mock(/\/*User/, systemApi.getUser)
+Mock.mock(/user/, systemApi.getUserList)
+Mock.mock(/user\/*/, systemApi.getUser)

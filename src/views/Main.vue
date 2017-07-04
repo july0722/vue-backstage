@@ -2,7 +2,6 @@
   <div class="main">
     <navbar></navbar>
     <sidebar></sidebar>
-    <breadcrumb></breadcrumb>
     <div class="view-container">
       <router-view class="view"></router-view>
     </div>
@@ -12,14 +11,12 @@
 <script>
 import navbar from '@/components/layout/navbar'
 import sidebar from '@/components/layout/sidebar'
-import breadcrumb from '@/components/layout/breadcrumb'
 
 export default {
   name: 'main',
   components: {
     navbar,
-    sidebar,
-    breadcrumb
+    sidebar
   }
 }
 </script>
@@ -29,7 +26,7 @@ export default {
 .main {
   .view {
     padding: $global-gap*3;
-    height: calc(100% - #{$layout-breadcrumb-height});
+    height: calc(100% - #{$global-gap*6});
     overflow-y: auto;
     &-container {
       background: #fff;
@@ -38,7 +35,19 @@ export default {
       left: 0;
       right: 0;
       bottom: 0;
-      margin: $layout-breadcrumb-height+$layout-navbar-height 0 0  $layout-sidebar-width;
+      margin: $layout-navbar-height 0 0 $layout-sidebar-width;
+    }
+  }
+  [class*="-editor view"] {
+    .el-input.el-date-editor,
+    .el-select {
+      width: $global-input-width;
+    }
+    .el-form-item__label {
+      width: $global-input-label-width;
+    }
+    .el-form-item__content {
+      margin-left: $global-input-label-width;
     }
   }
 }

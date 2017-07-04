@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 
 export function getUser() {
   return Mock.mock({
-    code: 1000,
+    code: 200,
     'user': {
       'id': '@id',
       'account': '@word(6, 10)',
@@ -15,7 +15,7 @@ export function getUser() {
 
 export function getUserList() {
   return Mock.mock({
-    code: 1000,
+    code: 200,
     count: 30,
     'data|5-10': [{
       'id': '@id',

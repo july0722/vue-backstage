@@ -7,9 +7,10 @@
       </div>
       <div>
         <slot name="action"></slot>
-        <template v-if="remove">
+        <template>
           <el-popover ref="popover" placement="top" v-model="action.visibleRemove">
-            <p>是否确认删除所勾选的<strong>&nbsp;{{table.multipleSelection.length}}&nbsp;</strong>条记录？</p>
+            <p>是否确认删除所勾选的
+              <strong>&nbsp;{{table.multipleSelection.length}}&nbsp;</strong>条记录？</p>
             <div style="text-align:right">
               <el-button size="mini" type="text" @click="action.visibleRemove = false">取消</el-button>
               <el-button type="primary" size="mini" @click="handleRemove">确定</el-button>
@@ -34,9 +35,8 @@ export default {
   name: 'datagrid',
   props: {
     search: Object,
-    fetch: Function,
     beforeFetch: Function,
-    remove: Function
+    resource: Function
   },
   data() {
     return {
@@ -69,7 +69,7 @@ export default {
     },
     fetchData() {
       this.table.loading = true
-      this.fetch({
+      this.resource.get('', {
         ...this.search,
         ...this.table.defaultSort,
         page: this.page.currentPage,
@@ -86,7 +86,7 @@ export default {
     },
     handleRemove() {
       this.action.visibleRemove = false
-      this.remove(this.table.multipleSelection).then(response => {
+      this.resource.delete(this.table.multipleSelection).then(response => {
         this.refresh()
       })
     },

@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 
 export function login() {
   return Mock.mock({
-    code: 1000,
+    code: 200,
     user: {
       id: 1,
       account: 'test',

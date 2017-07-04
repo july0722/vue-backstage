@@ -11,7 +11,6 @@ import password from '@/views/auth/password'
 
 import user from '@/views/system/user'
 import userEditor from '@/views/system/user/editor'
-import role from '@/views/system/role'
 
 Vue.use(VueRouter)
 NProgress.configure({
@@ -81,9 +80,6 @@ router.addRoutes([{
   }, {
     path: '/user/:id',
     component: userEditor
-  }, {
-    path: '/role',
-    component: role
   }]
 }])
 
