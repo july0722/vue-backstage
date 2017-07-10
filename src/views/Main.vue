@@ -38,7 +38,7 @@ export default {
       margin: $layout-navbar-height 0 0 $layout-sidebar-width;
     }
   }
-  [class*="-editor"],  {
+  [class*="-editor"]  {
     .el-input.el-date-editor,
     .el-select {
       width: $global-input-width;
