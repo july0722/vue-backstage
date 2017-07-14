@@ -7,9 +7,11 @@ import {
 
 export function createResource(resource) {
   let instance = axios.create({
-    baseURL: `${process.env.NODE_ENV !== 'production' ? '/api' : ''}/${resource}`
+    baseURL: `${process.env.NODE_ENV !== 'production' ? '/api' : ''}/${resource}`,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+    }
   })
-  instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8'
   instance.interceptors.request.use(config => {
     if (config.method === 'get') {
       for (let key in config.params) {
