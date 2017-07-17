@@ -13,17 +13,17 @@ export function createResource(resource) {
     }
   })
   instance.interceptors.request.use(config => {
+    config.params = Object.assign({}, config.params)
     if (config.method === 'get') {
       for (let key in config.params) {
         key.startsWith('_') && delete config.params[key]
       }
-      config.params || (config.params = {})
       config.params.token = store.state.auth.token
     } else {
+      config.data = Object.assign({}, config.data)
       for (let key in config.data) {
         key.startsWith('_') && delete config.data[key]
       }
-      config.data || (config.data = {})
       config.data.token = store.state.auth.token
       config.data = querystring.stringify(config.data)
     }
