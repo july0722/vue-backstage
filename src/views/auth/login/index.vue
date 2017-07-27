@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../assets/styles/index.scss';
+@import '../../../assets/styles/_shared.scss';
 
 .login {
   width: $global-gap * 40;

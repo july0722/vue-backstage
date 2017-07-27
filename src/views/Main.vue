@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/styles/index.scss';
+@import '../assets/styles/_shared.scss';
 .main {
   .view {
     padding: $global-gap*3;

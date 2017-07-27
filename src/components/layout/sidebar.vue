@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/styles/index.scss';
+@import '../../assets/styles/_shared.scss';
 .sidebar {
   box-sizing: border-box;
   position: fixed;

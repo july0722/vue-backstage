@@ -109,7 +109,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/styles/index.scss';
+@import '../../assets/styles/_shared.scss';
 .datagrid {
   section {
     font-size: 0;
