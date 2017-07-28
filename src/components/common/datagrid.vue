@@ -70,10 +70,12 @@ export default {
     fetchData() {
       this.table.loading = true
       this.resource.get('', {
-        ...this.search,
-        ...this.table.defaultSort,
-        page: this.page.currentPage,
-        pageSize: this.page.pageSize
+        params: {
+          ...this.search,
+          ...this.table.defaultSort,
+          page: this.page.currentPage,
+          pageSize: this.page.pageSize
+        }
       }).then(response => {
         this.table.data = Object.freeze(Object.values(response.data).find(x => x instanceof Array))
         this.page.total = response.data.count
