@@ -9,8 +9,8 @@ import error from '@/views/auth/error'
 import login from '@/views/auth/login'
 import password from '@/views/auth/password'
 
-import user from '@/views/system/user'
-import userEditor from '@/views/system/user/editor'
+const user = () => import('@/views/system/user')
+const userEditor = () => import('@/views/system/user/editor')
 
 Vue.use(VueRouter)
 NProgress.configure({
