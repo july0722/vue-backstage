@@ -13,8 +13,8 @@ export function createResource(resource) {
     }
   })
   instance.interceptors.request.use(config => {
-    config.params = Object.assign({}, config.params)
     if (config.method === 'get') {
+      config.params = Object.assign({}, config.params)
       for (let key in config.params) {
         key.startsWith('_') && delete config.params[key]
       }
