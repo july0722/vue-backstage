@@ -3,10 +3,10 @@
     <el-form ref="form" :model="form" :rules="rules">
       <h3>系统登录</h3>
       <el-form-item prop="account">
-        <el-input v-model="form.account" placeholder="请输入账号"></el-input>
+        <el-input v-model="form.account" placeholder="请输入账号" @keyup.enter.native="handleSubmit"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input type="password" v-model="form.password" placeholder="请输入密码"></el-input>
+        <el-input type="password" v-model="form.password" placeholder="请输入密码" @keyup.enter.native="handleSubmit"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" :loading="loading" @click="handleSubmit">登录</el-button>

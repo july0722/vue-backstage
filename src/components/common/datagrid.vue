@@ -7,17 +7,17 @@
       </div>
       <div>
         <slot name="action"></slot>
-        <template>
-          <el-popover ref="popover" placement="top" v-model="action.visibleRemove">
-            <p>是否确认删除所勾选的
-              <strong>&nbsp;{{table.multipleSelection.length}}&nbsp;</strong>条记录？</p>
-            <div style="text-align:right">
-              <el-button size="mini" type="text" @click="action.visibleRemove = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="handleRemove">确定</el-button>
-            </div>
-          </el-popover>
-          <el-button type="danger" v-popover:popover :disabled="table.multipleSelection.length === 0">删除</el-button>
-        </template>
+        <!-- <template>
+            <el-popover ref="popover" placement="top" v-model="action.visibleRemove">
+              <p>是否确认删除所勾选的
+                <strong>&nbsp;{{table.multipleSelection.length}}&nbsp;</strong>条记录？</p>
+              <div style="text-align:right">
+                <el-button size="mini" type="text" @click="action.visibleRemove = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="handleRemove">确定</el-button>
+              </div>
+            </el-popover>
+            <el-button type="danger" v-popover:popover :disabled="table.multipleSelection.length === 0">删除</el-button>
+          </template> -->
       </div>
     </section>
     <el-row v-loading="table.loading">
@@ -64,6 +64,18 @@ export default {
     this.table.defaultSort.prop || this.refresh()
   },
   methods: {
+    delete(id, title) {
+      const h = this.$createElement
+      this.$confirm(h('p', null, [
+        h('span', null, '此操作将删除该项'),
+        h('b', { style: 'color: teal;padding-left:4px;' }, title),
+        h('span', null, '，是否继续？')
+      ]), '提示', { type: 'warning' }).then(() => {
+        this.resource.delete(`${id}`).then(response => {
+          response.successful && this.refresh()
+        })
+      }).catch(() => { })
+    },
     refresh() {
       this.page.currentPage === 1 ? this.load() : this.page.currentPage = 1
     },

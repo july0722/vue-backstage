@@ -23,6 +23,7 @@
           <template scope="scope">
             <el-button size="small" type="text" @click="edit(scope.row)">弹窗编辑</el-button>
             <el-button size="small" type="text" @click="$router.push(`/user/${scope.row.id}`)">跳转编辑</el-button>
+            <el-button size="small" type="text" @click="$refs.datagrid.delete(scope.row.id, scope.row.account)">删除</el-button>
           </template>
         </el-table-column>
       </template>

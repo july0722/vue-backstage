@@ -29,9 +29,8 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     to.params.id === '-1' ? next() : api.user.get(to.params.id).then(response => {
-      console.log(response)
       response.successful ? next(vm => {
-        Object.assign(vm.form, response.data.user)
+        Object.assign(vm.form, response.data.data)
       }) : next('/error')
     })
   },

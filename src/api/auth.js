@@ -1,6 +1,6 @@
 import {
   createResource
-} from '@/utils/ajax'
+} from '@/utils/http'
 
 export const token = createResource('token')
 export const user = createResource('user')

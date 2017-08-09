@@ -7,10 +7,6 @@ import router from './router'
 import store from './store'
 import * as filters from './filters'
 
-if (process.env.NODE_ENV !== 'production') {
-  require('../mock')
-}
-
 Vue.config.productionTip = false
 Vue.use(Element)
 
