@@ -6,7 +6,7 @@
         <el-date-picker v-model="search._date" type="daterange" placeholder="日期范围" @change="handleChange"></el-date-picker>
       </template>
       <template slot="action">
-        <el-button type="success" @click="edit()">弹窗新增</el-button>
+        <el-button type="success" @click="edit({})">弹窗新增</el-button>
         <el-button type="success" @click="$router.push('/user/-1')">跳转新增</el-button>
       </template>
       <template slot="table">
@@ -57,7 +57,7 @@ export default {
     }
   },
   methods: {
-    edit(model = {}) {
+    edit(model) {
       this.model = model
       this.$refs.editor.visible = true
     },

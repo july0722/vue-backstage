@@ -16,7 +16,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
-    "element-ui": "^1.4.1",
+    "element-ui": "^1.4.2",
     "normalize.css": "^7.0.0",
     "nprogress": "^0.2.0",
     "vue": "^2.4.2",

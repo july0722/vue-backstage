@@ -66,9 +66,11 @@ export default {
       })
     },
     handleOpen() {
-      setTimeout(() => {
-        Object.assign(this.form, this.model)
-      }, 0)
+      this.$nextTikck(() => {
+        Object.keys(this.form).forEach(key => {
+          this.model[key] && (this.form[key] = this.model[key])
+        })
+      })
     },
     handleClose() {
       this.$refs.form.resetFields()
