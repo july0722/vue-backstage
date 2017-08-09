@@ -2,13 +2,12 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import Element from 'element-ui'
 import router from './router'
 import store from './store'
 import * as filters from './filters'
+import '@/utils/element-ui'
 
 Vue.config.productionTip = false
-Vue.use(Element)
 
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
