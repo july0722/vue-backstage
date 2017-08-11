@@ -14,5 +14,4 @@ export default {
 @import './assets/styles/_shared.scss';
 @import '~normalize.css';
 @import '~nprogress/nprogress.css';
-@import '~element-ui/lib/theme-default/index.css';
 </style>
