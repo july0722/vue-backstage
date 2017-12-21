@@ -6,16 +6,16 @@ export function datetime(date, format = 'yyyy-MM-dd HH:mm:ss') {
   typeof date === 'number' && (date = new Date(date))
   let obj = {
     // yyyy-MM-dd 第q季度 www HH:mm:ss:SSS
-    'y': date.getFullYear(),
-    'M': date.getMonth() + 1,
-    'd': date.getDate(),
-    'q': Math.floor((date.getMonth() + 3) / 3),
-    'w': date.getDay(),
-    'H': date.getHours(),
-    'h': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12,
-    'm': date.getMinutes(),
-    's': date.getSeconds(),
-    'S': date.getMilliseconds()
+    y: date.getFullYear(),
+    M: date.getMonth() + 1,
+    d: date.getDate(),
+    q: Math.floor((date.getMonth() + 3) / 3),
+    w: date.getDay(),
+    H: date.getHours(),
+    h: date.getHours() % 12 === 0 ? 12 : date.getHours() % 12,
+    m: date.getMinutes(),
+    s: date.getSeconds(),
+    S: date.getMilliseconds()
   }
   let _week = ['日', '一', '二', '三', '四', '五', '六']
   for (let i in obj) {
