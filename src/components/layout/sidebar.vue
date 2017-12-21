@@ -3,7 +3,7 @@
     <header>
       <p>MS管理系统</p>
     </header>
-    <el-menu theme="dark" :router="true" :default-active="$route.path">
+    <el-menu theme="dark" :router="true" :default-active="$route.path" :collapse="$store.app.sidebar.collapse">
       <el-submenu v-if="permission1.children" v-for="(permission1, index) in currentPermissions" :key="index" :index="permission1.children[0].path">
         <template slot="title">
           <i :class="`iconfont icon-${permission1.icon}`"></i>{{permission1.name}}
@@ -18,16 +18,12 @@
 </template>
 
 <script>
-import {
-  mapGetters
-} from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'sidebar',
   computed: {
-    ...mapGetters([
-      'currentPermissions'
-    ])
+    ...mapGetters(['currentPermissions'])
   }
 }
 </script>
@@ -52,7 +48,7 @@ export default {
     p {
       -webkit-margin-before: 0;
       -webkit-margin-after: 0;
-      height:$layout-navbar-height;
+      height: $layout-navbar-height;
       line-height: $layout-navbar-height;
     }
   }
