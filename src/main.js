@@ -8,7 +8,6 @@ import * as filters from './filters'
 import '@/utils/element-ui'
 
 Vue.config.productionTip = false
-
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
@@ -19,7 +18,5 @@ new Vue({
   store,
   router,
   template: '<App/>',
-  components: {
-    App
-  }
+  components: { App }
 })
