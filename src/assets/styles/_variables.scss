@@ -1,17 +1,9 @@
+@import '~element-ui/packages/theme-chalk/src/common/var.scss';
+
 $global-gap: 8px;
-$global-border-radius: 4px;
-$global-border-color: #d1dbe5;
-$global-input-width: $global-gap * 40;
-$global-input-label-width: $global-gap * 15;
+$global-border-radius: $--border-radius-base;
+$global-border: $--border-base;
 
 $layout-sidebar-width: $global-gap * 28;
+$layout-sidebar-collapse-width: 64px;
 $layout-navbar-height: $global-gap * 7;
-
-$color-primary: #20a0ff;
-$color-info: #50bfff;
-$color-success: #13ce66;
-$color-warning: #f7ba2a;
-$color-danger: #ff4949;
-$color-failure: #48576a;
-$color-hover: #e4e8f1;
-$color-active: #e4e8f1;

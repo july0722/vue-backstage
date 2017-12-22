@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <datagrid ref="datagrid" :search="search" :resource="resource" :beforeFetch="handleBeforeFetch" @fetch="handleFetch" @init="handleInit">
+    <!-- <datagrid ref="datagrid" :search="search" :resource="resource" :beforeFetch="handleBeforeFetch" @fetch="handleFetch" @init="handleInit">
       <template slot="search">
         <el-input v-model="search.username" placeholder="用户名" @keyup.enter.native="$refs.datagrid.refresh()"></el-input>
         <el-date-picker v-model="search._date" type="daterange" placeholder="日期范围" @change="handleChange"></el-date-picker>
@@ -28,25 +28,25 @@
         </el-table-column>
       </template>
     </datagrid>
-    <_editor ref="editor" :model="model" @success="$refs.datagrid.refresh()"></_editor>
+    <_editor ref="editor" :model="model" @success="$refs.datagrid.refresh()"></_editor> -->
   </div>
 </template>
 
 <script>
-import datagrid from '@/components/common/datagrid'
-import _editor from './_editor'
-import editor from './editor'
-import * as api from '@/api/system'
+// import datagrid from '@/components/common/datagrid'
+// import _editor from './_editor'
+// import editor from './editor'
+// import * as api from '@/api/system'
 export default {
   name: 'user',
   components: {
-    datagrid,
-    _editor,
-    editor
+    // datagrid,
+    // _editor,
+    // editor
   },
   data() {
     return {
-      resource: api.user,
+      // resource: api.user,
       model: {},
       search: {
         username: '',

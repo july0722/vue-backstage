@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "element-ui": "^2.0.8",
+    "normalize.css": "^7.0.0",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -27,6 +28,7 @@
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-jest": "^21.0.2",
     "babel-loader": "^7.1.1",
+    "babel-plugin-component": "^1.0.0",
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",

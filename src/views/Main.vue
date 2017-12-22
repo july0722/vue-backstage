@@ -1,8 +1,8 @@
 <template>
   <div class="main">
-    <navbar></navbar>
     <sidebar></sidebar>
-    <div class="view-container">
+    <navbar></navbar>
+    <div class="view-container" :class="{collapse: $store.state.app.sidebar.collapse}">
       <router-view class="view"></router-view>
     </div>
   </div>
@@ -13,7 +13,7 @@ import navbar from '@/components/layout/navbar'
 import sidebar from '@/components/layout/sidebar'
 
 export default {
-  name: 'main',
+  // name: 'main',
   components: {
     navbar,
     sidebar
@@ -31,23 +31,14 @@ export default {
     &-container {
       background: #fff;
       position: absolute;
-      top: 0;
-      left: 0;
+      top: $layout-navbar-height;
+      left: $layout-sidebar-width;
       right: 0;
       bottom: 0;
-      margin: $layout-navbar-height 0 0 $layout-sidebar-width;
-    }
-  }
-  [class*="-editor"]  {
-    .el-input.el-date-editor,
-    .el-select {
-      width: $global-input-width;
-    }
-    .el-form-item__label {
-      width: $global-input-label-width;
-    }
-    .el-form-item__content {
-      margin-left: $global-input-label-width;
+      transition: $--all-transition;
+      &.collapse {
+        left: $layout-sidebar-collapse-width;
+      }
     }
   }
 }

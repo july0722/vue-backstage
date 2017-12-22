@@ -4,10 +4,9 @@ $modifierSeparator: '--';
 @function containsModifier($selector) {
   $selector: selectorToString($selector);
   @if str-index($selector, $modifierSeparator) {
-     @return true;
-  }
-  @else {
-     @return false;
+    @return true;
+  } @else {
+    @return false;
   }
 }
 @function selectorToString($selector) {
@@ -31,23 +30,22 @@ $modifierSeparator: '--';
     $block: getBlock($selector);
     @at-root {
       #{$selector} {
-        #{$block+$elementSeparator+$element} {
+        #{$block + $elementSeparator + $element} {
           @content;
         }
       }
     }
-  }
-  @else {
-     @at-root{
-      #{$selector+$elementSeparator+$element} {
+  } @else {
+    @at-root {
+      #{$selector + $elementSeparator + $element} {
         @content;
       }
     }
   }
 }
 @mixin m($modifier) {
-   @at-root{
-    #{ &}#{$modifierSeparator+$modifier} {
+  @at-root {
+    #{ &}#{$modifierSeparator + $modifier} {
       @content;
     }
   }
