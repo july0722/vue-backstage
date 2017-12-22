@@ -3,7 +3,9 @@
     <sidebar></sidebar>
     <navbar></navbar>
     <div class="view-container" :class="{collapse: $store.state.app.sidebar.collapse}">
-      <router-view class="view"></router-view>
+      <keep-alive :include="$store.state.app.cachePage">
+        <router-view class="view"></router-view>
+      </keep-alive>
     </div>
   </div>
 </template>

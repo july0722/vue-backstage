@@ -9,6 +9,23 @@ export const loginRouter = {
   component: () => import('@/views/auth/login')
 }
 
+export const otherRouter = {
+  path: '/',
+  name: 'otherRouter',
+  redirect: '/home',
+  component: Main,
+  children: [
+    {
+      path: 'home',
+      title: { i18n: 'home' },
+      name: 'home',
+      component: resolve => {
+        require(['@/views/home/home.vue'], resolve)
+      }
+    }
+  ]
+}
+
 export const appRouter = [
   {
     path: '/system',
