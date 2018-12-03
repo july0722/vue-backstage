@@ -2,13 +2,24 @@
   <div class="user-editor">
     <el-form ref="form" :model="form" :rules="rules">
       <el-form-item label="账号" prop="account">
-        <el-input placeholder="请输入账号" v-model="form.account" :disabled="!isCreate"></el-input>
+        <el-input
+          placeholder="请输入账号"
+          v-model="form.account"
+          :disabled="!isCreate"
+        ></el-input>
       </el-form-item>
       <el-form-item label="用户名" prop="username">
         <el-input placeholder="请输入用户名" v-model="form.username"></el-input>
       </el-form-item>
       <el-form-item label="状态" prop="status">
-        <el-switch v-model="form.status" on-text="启用" off-text="停用" on-color="#13ce66" :on-value="1" :off-value="0"></el-switch>
+        <el-switch
+          v-model="form.status"
+          on-text="启用"
+          off-text="停用"
+          on-color="#13ce66"
+          :on-value="1"
+          :off-value="0"
+        ></el-switch>
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -28,11 +39,15 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    to.params.id === '-1' ? next() : api.user.get(to.params.id).then(response => {
-      response.successful ? next(vm => {
-        Object.assign(vm.form, response.data.data)
-      }) : next('/error')
-    })
+    to.params.id === '-1'
+      ? next()
+      : api.user.get(to.params.id).then(response => {
+          response.successful
+            ? next(vm => {
+                Object.assign(vm.form, response.data.data)
+              })
+            : next('/error')
+        })
   },
   data() {
     return {
@@ -43,16 +58,20 @@ export default {
         status: 0
       },
       rules: {
-        account: [{
-          required: true,
-          message: '请输入账号',
-          trigger: 'blur'
-        }],
-        username: [{
-          required: true,
-          message: '请输入用户名',
-          trigger: 'blur'
-        }]
+        account: [
+          {
+            required: true,
+            message: '请输入账号',
+            trigger: 'blur'
+          }
+        ],
+        username: [
+          {
+            required: true,
+            message: '请输入用户名',
+            trigger: 'blur'
+          }
+        ]
       }
     }
   },
@@ -60,7 +79,10 @@ export default {
     handleSubmit() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          api.user[this.isCreate ? 'post' : 'put'](this.isCreate ? '' : `${this.form.id}`, this.form).then(response => {
+          api.user[this.isCreate ? 'post' : 'put'](
+            this.isCreate ? '' : `${this.form.id}`,
+            this.form
+          ).then(response => {
             if (response.successful) {
               this.$router.go(-1)
             }

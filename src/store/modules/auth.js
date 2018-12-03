@@ -1,35 +1,31 @@
+import http from '@/plugins/axios'
 import * as types from '../mutation-types'
-import * as api from '@/api/auth'
 
 const state = {
-  user: {},
+  user: '',
+  menus: [],
   permissions: []
 }
 
 const getters = {
-  currentUser: state => state.user,
-  currentPermissions: state => state.permissions,
   loggedIn: state => !!state.user.id
 }
 
 const actions = {
-  login: async({
-    commit,
-    state
-  }, payload) => {
-    const response = await api.token.post('', payload)
+  login: async ({ commit }, payload) => {
+    let response = await http.post('/login/dologin', payload)
     if (response.successful) {
-      commit(types.RECORD_AUTH_USER, response.data.user)
-      commit(types.RECORD_AUTH_PERMISSIONS, response.data.permissions)
+      commit(types.RECORD_AUTH_USER, payload.account)
+      response = await http.get('/sys/index/getUserMenus')
+      commit(types.RECORD_AUTH_MENUS, response.data.data)
     }
     return response
   },
-  logout: ({
-    commit,
-    state
-  }) => {
-    commit(types.RECORD_AUTH_USER, {})
-    commit(types.RECORD_AUTH_PERMISSIONS, [])
+  logout: ({ commit }) => {
+    http.post('/login/logout').then(res => {
+      res.successful && commit(types.RECORD_AUTH_USER, '')
+      // router.push('/login')
+    })
   }
 }
 
@@ -39,6 +35,9 @@ const mutations = {
   },
   [types.RECORD_AUTH_PERMISSIONS](state, permissions) {
     state.permissions = permissions
+  },
+  [types.RECORD_AUTH_MENUS](state, menus) {
+    state.menus = menus
   }
 }
 

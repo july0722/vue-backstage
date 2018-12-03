@@ -1,7 +1,5 @@
 <template>
-  <div class="error">
-    <img src="../../../assets/images/error.jpg">
-  </div>
+  <div class="error"><img src="../../../assets/images/error.jpg" /></div>
 </template>
 
 <script>

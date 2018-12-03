@@ -1,18 +1,31 @@
 <template>
-  <el-menu class="sidebar" :router="true" :default-active="$route.path" :collapse="$store.state.app.sidebar.collapse">
-    <header>
-      <p>MS管理系统</p>
-    </header>
-    <el-submenu v-if="router1.children" v-for="(router1, index) in appRouter" :key="index" :index="router1.children[0].path">
+  <el-menu
+    class="sidebar"
+    :router="true"
+    :default-active="$route.path"
+    :collapse="$store.state.app.sidebar.collapse"
+  >
+    <header><p>MS管理系统</p></header>
+    <el-submenu
+      v-if="router1.children"
+      v-for="(router1, index) in appRouter"
+      :key="index"
+      :index="router1.children[0].path"
+    >
       <template slot="title">
         <i :class="`el-icon-${router1.icon}`"></i>
-        <span slot="title">{{router1.name}}</span>
+        <span slot="title">{{ router1.name }}</span>
       </template>
-      <el-menu-item v-for="(router2, index) in router1.children" :key="index" :index="router2.path">{{router2.name}}</el-menu-item>
+      <el-menu-item
+        v-for="(router2, index) in router1.children"
+        :key="index"
+        :index="router2.path"
+        >{{ router2.name }}</el-menu-item
+      >
     </el-submenu>
     <el-menu-item v-else :index="router1.path">
       <i :class="`el-icon-${router1.icon}`"></i>
-      <span slot="title">{{router1.name}}</span>
+      <span slot="title">{{ router1.name }}</span>
     </el-menu-item>
   </el-menu>
 </template>

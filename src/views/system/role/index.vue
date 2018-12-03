@@ -1,7 +1,5 @@
 <template>
-  <div class="role">
-    <div>dfdfdf</div>
-  </div>
+  <div class="role"><div>dfdfdf</div></div>
 </template>
 
 <script>

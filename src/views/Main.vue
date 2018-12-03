@@ -1,8 +1,10 @@
 <template>
   <div class="main">
-    <sidebar></sidebar>
-    <navbar></navbar>
-    <div class="view-container" :class="{collapse: $store.state.app.sidebar.collapse}">
+    <sidebar></sidebar> <navbar></navbar>
+    <div
+      class="view-container"
+      :class="{ collapse: $store.state.app.sidebar.collapse }"
+    >
       <keep-alive :include="$store.state.app.cachePage">
         <router-view class="view"></router-view>
       </keep-alive>
@@ -18,7 +20,7 @@ export default {
   // name: 'main',
   components: {
     navbar,
-    sidebar
+    sidebarFF
   }
 }
 </script>
@@ -27,8 +29,8 @@ export default {
 @import '../assets/styles/_shared.scss';
 .main {
   .view {
-    padding: $global-gap*3;
-    height: calc(100% - #{$global-gap*6});
+    padding: $global-gap * 3;
+    height: calc(100% - #{$global-gap * 6});
     overflow-y: auto;
     &-container {
       background: #fff;

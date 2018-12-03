@@ -3,7 +3,9 @@
     <section>
       <div>
         <slot name="search"></slot>
-        <el-button v-if="search" type="primary" @click="refresh()">搜索</el-button>
+        <el-button v-if="search" type="primary" @click="refresh()"
+          >搜索</el-button
+        >
       </div>
       <div>
         <slot name="action"></slot>
@@ -21,11 +23,23 @@
       </div>
     </section>
     <el-row v-loading="table.loading">
-      <el-table :data="table.data" :default-sort="table.defaultSort" @selection-change="handleSelectionChange" @sort-change="handleSortChange">
+      <el-table
+        :data="table.data"
+        :default-sort="table.defaultSort"
+        @selection-change="handleSelectionChange"
+        @sort-change="handleSortChange"
+      >
         <el-table-column type="selection"></el-table-column>
         <slot name="table"></slot>
       </el-table>
-      <el-pagination v-if="page.total / page.pageSize > 1" :layout="page.layout" :current-page.sync="page.currentPage" :page-size="page.pageSize" :total="page.total" @current-change="handleCurrentChange"></el-pagination>
+      <el-pagination
+        v-if="page.total / page.pageSize > 1"
+        :layout="page.layout"
+        :current-page.sync="page.currentPage"
+        :page-size="page.pageSize"
+        :total="page.total"
+        @current-change="handleCurrentChange"
+      ></el-pagination>
     </el-row>
   </div>
 </template>
@@ -66,37 +80,49 @@ export default {
   methods: {
     delete(id, title) {
       const h = this.$createElement
-      this.$confirm(h('p', null, [
-        h('span', null, '此操作将删除该项'),
-        h('b', { style: 'color: teal;padding-left:4px;' }, title),
-        h('span', null, '，是否继续？')
-      ]), '提示', { type: 'warning' }).then(() => {
-        this.resource.delete(`${id}`).then(response => {
-          response.successful && this.refresh()
+      this.$confirm(
+        h('p', null, [
+          h('span', null, '此操作将删除该项'),
+          h('b', { style: 'color: teal;padding-left:4px;' }, title),
+          h('span', null, '，是否继续？')
+        ]),
+        '提示',
+        { type: 'warning' }
+      )
+        .then(() => {
+          this.resource.delete(`${id}`).then(response => {
+            response.successful && this.refresh()
+          })
         })
-      }).catch(() => { })
+        .catch(() => {})
     },
     refresh() {
-      this.page.currentPage === 1 ? this.load() : this.page.currentPage = 1
+      this.page.currentPage === 1 ? this.load() : (this.page.currentPage = 1)
     },
     fetchData() {
       this.table.loading = true
-      this.resource.get('', {
-        params: {
-          ...this.search,
-          ...this.table.defaultSort,
-          page: this.page.currentPage,
-          pageSize: this.page.pageSize
-        }
-      }).then(response => {
-        this.table.data = Object.freeze(Object.values(response.data).find(x => x instanceof Array))
-        this.page.total = response.data.count
-        this.table.loading = false
-        this.$emit('fetch', response)
-      })
+      this.resource
+        .get('', {
+          params: {
+            ...this.search,
+            ...this.table.defaultSort,
+            page: this.page.currentPage,
+            pageSize: this.page.pageSize
+          }
+        })
+        .then(response => {
+          this.table.data = Object.freeze(
+            Object.values(response.data).find(x => x instanceof Array)
+          )
+          this.page.total = response.data.count
+          this.table.loading = false
+          this.$emit('fetch', response)
+        })
     },
     load() {
-      typeof this.beforeFetch === 'function' ? this.beforeFetch(this.fetchData) : this.fetchData()
+      typeof this.beforeFetch === 'function'
+        ? this.beforeFetch(this.fetchData)
+        : this.fetchData()
     },
     handleRemove() {
       this.action.visibleRemove = false
@@ -127,18 +153,18 @@ export default {
 .datagrid {
   section {
     font-size: 0;
-    margin-bottom: $global-gap*2;
+    margin-bottom: $global-gap * 2;
     display: flex;
     justify-content: space-between;
   }
-  div[class="el-input"] {
+  div[class='el-input'] {
     width: initial;
   }
   .el-input,
   .el-button:not(:last-of-type) {
     margin-right: $global-gap;
   }
-  .el-button+.el-button {
+  .el-button + .el-button {
     margin-left: 0;
   }
   .el-pagination {

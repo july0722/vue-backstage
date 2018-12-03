@@ -2,7 +2,11 @@
   <div class="password">
     <el-form ref="form" label-width="88px" :model="form" :rules="rules">
       <el-form-item label="原密码" prop="oldPwd">
-        <el-input type="password" v-model="form.oldPwd" auto-complete="oldPwd"></el-input>
+        <el-input
+          type="password"
+          v-model="form.oldPwd"
+          auto-complete="oldPwd"
+        ></el-input>
       </el-form-item>
       <el-form-item required label="新密码" prop="newPwd">
         <el-input type="password" v-model="form.newPwd"></el-input>
@@ -11,7 +15,9 @@
         <el-input type="password" v-model="form.checkPwd"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" :loading="loading" @click="handleSubmit">提交</el-button>
+        <el-button type="primary" :loading="loading" @click="handleSubmit"
+          >提交</el-button
+        >
       </el-form-item>
     </el-form>
   </div>
@@ -19,16 +25,12 @@
 
 <script>
 import * as api from '@/api/auth'
-import {
-  mapGetters
-} from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'password',
   computed: {
-    ...mapGetters([
-      'currentUser'
-    ])
+    ...mapGetters(['currentUser'])
   },
   data() {
     const validateNewPwd = (rule, value, callback) => {
@@ -57,37 +59,48 @@ export default {
         checkPwd: ''
       },
       rules: {
-        oldPwd: [{
-          required: true,
-          message: '请输入原密码',
-          trigger: 'blur'
-        }],
-        newPwd: [{
-          validator: validateNewPwd,
-          trigger: 'blur'
-        }],
-        checkPwd: [{
-          validator: validateCheckPwd,
-          trigger: 'blur'
-        }]
+        oldPwd: [
+          {
+            required: true,
+            message: '请输入原密码',
+            trigger: 'blur'
+          }
+        ],
+        newPwd: [
+          {
+            validator: validateNewPwd,
+            trigger: 'blur'
+          }
+        ],
+        checkPwd: [
+          {
+            validator: validateCheckPwd,
+            trigger: 'blur'
+          }
+        ]
       },
       loading: false
     }
   },
   methods: {
     handleSubmit() {
-      this.$refs.form.validate((valid) => {
+      this.$refs.form.validate(valid => {
         if (valid) {
           this.loading = true
-          api.user.put('', {
-            account: this.currentUser.account,
-            oldPwd: this.form.oldPwd,
-            newPwd: this.form.newPwd
-          }).then(response => {
-            response.successful ? this.$router.push('/logout') : this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
+          api.user
+            .put('', {
+              account: this.currentUser.account,
+              oldPwd: this.form.oldPwd,
+              newPwd: this.form.newPwd
+            })
+            .then(response => {
+              response.successful
+                ? this.$router.push('/logout')
+                : (this.loading = false)
+            })
+            .catch(() => {
+              this.loading = false
+            })
         }
       })
     }
@@ -104,7 +117,7 @@ export default {
   }
   input:-webkit-autofill {
     box-shadow: 0 0 0px 18px white inset;
-    background-color: #fff!important;
+    background-color: #fff !important;
   }
 }
 </style>

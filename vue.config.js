@@ -7,14 +7,13 @@ module.exports = {
       }
     }
   },
-  // devServer: {
-  //   proxy: {
-  //     '/api/manager': {
-  //       // target: 'http://test.t-learning.huikefu.com',
-  //       target: 'http://localhost:8580',
-  //       ws: true,
-  //       changeOrigin: true
-  //     }
-  //   }
-  // }
-};
+  devServer: {
+    proxy: {
+      '/api/manager': {
+        target: 'https://www.easy-mock.com/mock/598a6b4aa1d30433d85a1155',
+        ws: true,
+        changeOrigin: true
+      }
+    }
+  }
+}

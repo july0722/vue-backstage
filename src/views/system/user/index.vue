@@ -28,7 +28,7 @@
         </el-table-column>
       </template>
     </datagrid>
-    <_editor ref="editor" :model="model" @success="$refs.datagrid.refresh()"></_editor> -->
+    <_editor ref="editor" :model="model" @success="$refs.datagrid.refresh()"></_editor>-->
   </div>
 </template>
 
@@ -83,6 +83,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
