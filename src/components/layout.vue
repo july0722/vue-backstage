@@ -16,18 +16,21 @@
     </el-header>
     <el-container>
       <el-aside width="240px">
-        <el-menu ref="menu" router @select="onSelect">
+        <el-menu ref="menu" router :default-active="$route.fullPath">
           <template v-for="menu in menus">
             <el-submenu v-if="menu.children" :index="menu.name" :key="menu.name">
-              <template slot="title">{{ menu.name }}</template>
+              <template slot="title">
+                <i :class="`el-icon-${menu.icon}`"></i>
+                <span>{{ menu.name }}</span>
+              </template>
               <el-menu-item
                 v-for="sub in menu.children"
                 :key="sub.name"
                 :index="sub.url"
-              >{{ sub.name }}</el-menu-item>
+              >{{sub.name}}</el-menu-item>
             </el-submenu>
             <el-menu-item v-else :key="menu.name" :index="menu.url">
-              <i class="el-icon-menu"></i>
+              <i :class="`el-icon-${menu.icon}`"></i>
               <span slot="title">{{menu.name}}</span>
             </el-menu-item>
           </template>
@@ -42,7 +45,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import * as types from '@/store/mutation-types'
 
 export default {
   name: 'layout',
@@ -53,7 +55,6 @@ export default {
   },
   computed: {
     ...mapState({
-      path: state => state.auth.path,
       user: state => state.auth.user,
       menus: state => state.auth.menus
     })
@@ -69,10 +70,7 @@ export default {
     this.$root.$off('loading')
   },
   methods: {
-    ...mapActions(['logout']),
-    onSelect(index) {
-      this.$store.commit(types.RECORD_AUTH_PATH, index)
-    }
+    ...mapActions(['logout'])
   }
 }
 </script>
@@ -125,6 +123,12 @@ export default {
           // background-color: #f2f2f2;
         }
       }
+    }
+  }
+  .view {
+    height: 100%;
+    & + .el-loading-mask {
+      background: rgba(255, 255, 255, 0.8);
     }
   }
 }

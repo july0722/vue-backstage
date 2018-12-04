@@ -1,85 +1,84 @@
 <template>
   <div class="user">
-    <!-- <datagrid ref="datagrid" :search="search" :resource="resource" :beforeFetch="handleBeforeFetch" @fetch="handleFetch" @init="handleInit">
-      <template slot="search">
-        <el-input v-model="search.username" placeholder="用户名" @keyup.enter.native="$refs.datagrid.refresh()"></el-input>
-        <el-date-picker v-model="search._date" type="daterange" placeholder="日期范围" @change="handleChange"></el-date-picker>
-      </template>
-      <template slot="action">
-        <el-button type="success" @click="edit({})">弹窗新增</el-button>
-        <el-button type="success" @click="$router.push('/user/-1')">跳转新增</el-button>
-      </template>
-      <template slot="table">
-        <el-table-column prop="account" label="账号"></el-table-column>
-        <el-table-column prop="username" label="姓名"></el-table-column>
-        <el-table-column :sortable="'custom'" prop="date" label="日期"></el-table-column>
-        <el-table-column prop="date" label="状态">
-          <template scope="scope">
-            <el-tag v-if="scope.row.status === 0" type="gray">停用</el-tag>
-            <el-tag v-else type="success">启用</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column label="操作">
-          <template scope="scope">
-            <el-button size="small" type="text" @click="edit(scope.row)">弹窗编辑</el-button>
-            <el-button size="small" type="text" @click="$router.push(`/user/${scope.row.id}`)">跳转编辑</el-button>
-            <el-button size="small" type="text" @click="$refs.datagrid.delete(scope.row.id, scope.row.account)">删除</el-button>
-          </template>
-        </el-table-column>
-      </template>
-    </datagrid>
-    <_editor ref="editor" :model="model" @success="$refs.datagrid.refresh()"></_editor>-->
+    <c-table :fields="fields" :columns="columns" url="/sys/user">
+      <el-button
+        slot="operate"
+        size="medium"
+        round
+        @click="$router.push('/sys/user/operation/edit/0')"
+      >创建运营用户</el-button>
+      <el-table-column slot="status" label="状态" width="130">
+        <template slot-scope="{ row }">
+          <i :class="[`bg-${row.status === 0 ? 'success' : 'danger'}`]"></i>
+          {{row.status === 0? '正常' : '锁定'}}
+        </template>
+      </el-table-column>
+      <el-table-column slot="operation" label="操作">
+        <template slot-scope="{ row }">
+          <el-button size="mini" @click="$router.push(`/sys/user/operation/edit/${row.userId}`)">编辑</el-button>
+          <el-button size="mini" @click="onReset(row, $event)">重置密码</el-button>
+          <el-button
+            v-if="row.status === 0"
+            size="mini"
+            type="danger"
+            @click="onOperate(row, $event)"
+          >禁用</el-button>
+          <el-button v-else size="mini" type="success" @click="onOperate(row, $event)">启用</el-button>
+        </template>
+      </el-table-column>
+    </c-table>
   </div>
 </template>
 
 <script>
-// import datagrid from '@/components/common/datagrid'
-// import _editor from './_editor'
-// import editor from './editor'
-// import * as api from '@/api/system'
+import cTable from '@/components/common/table'
+
 export default {
   name: 'user',
-  components: {
-    // datagrid,
-    // _editor,
-    // editor
-  },
+  components: { cTable },
   data() {
     return {
-      // resource: api.user,
-      model: {},
-      search: {
-        username: '',
-        _date: '',
-        beginDate: '',
-        endDate: ''
-      }
+      fields: [
+        {
+          prop: 'name',
+          placeholder: '姓名 / 账号',
+          clearable: true
+        },
+        {
+          prop: 'status',
+          placeholder: '状态',
+          type: 'select',
+          clearable: true,
+          options: [
+            {
+              label: '已审核',
+              value: 0
+            },
+            {
+              label: '未提交',
+              value: 1
+            },
+            {
+              label: '审核中',
+              value: 3
+            },
+            {
+              label: '审核不通过',
+              value: 2
+            }
+          ]
+        }
+      ],
+      columns: [
+        { prop: 'name', label: '姓名' },
+        { prop: 'account', label: '账号' },
+        { prop: 'createtime', label: '创建时间' },
+        { slot: 'status' },
+        { slot: 'operation' }
+      ]
     }
   },
-  methods: {
-    edit(model) {
-      this.model = model
-      this.$refs.editor.visible = true
-    },
-    handleInit({ table }) {
-      table.defaultSort = { prop: 'date', order: 'descending' }
-    },
-    handleChange() {
-      if (this.search._date[0]) {
-        this.search.beginDate = this.search._date[0].getTime()
-        this.search.endDate = this.search._date[1].getTime()
-      } else {
-        this.search.beginDate = this.search.endDate = ''
-      }
-    },
-    handleBeforeFetch(done) {
-      console.log('handleBeforeFetch')
-      done()
-    },
-    handleFetch() {
-      console.log('handleFetch')
-    }
-  }
+  methods: {}
 }
 </script>
 
