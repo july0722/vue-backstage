@@ -152,9 +152,8 @@ export default {
             this.$emit('after-fetch', res.data.data)
             this.data = res.data.data
           }
-          this.loading = false
         })
-        .catch(() => (this.loading = false))
+        .finally(() => (this.loading = false))
     },
     reload() {
       this.pagination.currentPage = 1

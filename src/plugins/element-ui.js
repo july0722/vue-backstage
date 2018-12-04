@@ -29,12 +29,10 @@ Object.defineProperty(Vue.prototype, '$_confirm', {
           instance.confirmButtonText = '执行中...'
           operate()
             .then(res => {
-              instance.confirmButtonLoading = false
-              instance.confirmButtonText = '确定'
               response = res
               done()
             })
-            .catch(() => {
+            .finally(() => {
               instance.confirmButtonLoading = false
               instance.confirmButtonText = '确定'
             })

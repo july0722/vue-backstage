@@ -16,7 +16,6 @@
       <el-table-column slot="operation" label="操作">
         <template slot-scope="{ row }">
           <el-button size="mini" @click="$router.push(`/sys/user/operation/edit/${row.userId}`)">编辑</el-button>
-          <el-button size="mini" @click="onReset(row, $event)">重置密码</el-button>
           <el-button
             v-if="row.status === 0"
             size="mini"
@@ -78,7 +77,23 @@ export default {
       ]
     }
   },
-  methods: {}
+  methods: {
+    onOperate(row, event) {
+      this.$_confirm({
+        operateText: event.target.innerText,
+        name: row.account,
+        operate: () =>
+          this.$http.post(
+            `/sys/user/opt/${row.userId}/${
+              row.status === 0 ? 'lock' : 'unlock'
+            }`
+          ),
+        callback() {
+          row.status = row.status === 1 ? 0 : 1
+        }
+      })
+    }
+  }
 }
 </script>
 
