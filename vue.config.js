@@ -1,11 +1,22 @@
+const QiniuWebpackPlugin = require('./plugins/Qiniu.webpack.plugin')
+const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = {
-  lintOnSave: true,
+  baseUrl: isProduction ? 'http://cdn' : '/',
   css: {
     loaderOptions: {
       sass: {
         data: `@import "@/assets/styles/_shared.scss";`
       }
     }
+  },
+  configureWebpack: config => {
+    if (isProduction) {
+      config.plugins.push(new QiniuWebpackPlugin({
+        ACCESS_KEY: '',
+        SECRET_KEY: ''
+      }))
+    } else {}
   },
   devServer: {
     proxy: {

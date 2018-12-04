@@ -19,7 +19,7 @@ const plugin = store => {
       )
     }
   }
-  store.subscribe((mutation, state) => {
+  store.subscribe(mutation => {
     mutation.type.indexOf('RECORD') === 0 &&
       storage.setItem(
         mutation.type.replace('RECORD', flag).toLowerCase(),
