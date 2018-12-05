@@ -20,7 +20,12 @@ export default new Router({
           path: '/sys/user',
           component: () =>
             import(/* webpackChunkName: "login" */ '@/views/system/user')
-        }
+        },
+        {
+          path: '/content/:code',
+          component: () =>
+            import(/* webpackChunkName: "login" */ '@/views/content')
+        },
       ]
     },
     {

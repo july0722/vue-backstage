@@ -3,7 +3,7 @@
     <div class="c-tab__toolbar">
       <slot></slot>
     </div>
-    <el-tabs @tab-click="onTabClick" v-model="activeTab">
+    <el-tabs type="border-card" v-model="activeTab" @tab-click="onTabClick">
       <el-tab-pane v-for="(item, index) in tabs" :key="index" :label="item.name" :name="item.code">
         <component
           v-if="activeTab === item.code"
@@ -49,39 +49,54 @@ export default {
 
 <style lang="scss">
 @include b(c-tab) {
-  padding: 40px 0 0;
-  font-size: 0;
+  padding: 16px;
+  height: calc(100% - 32px);
   @include e(toolbar) {
     position: absolute;
     right: 24px;
     z-index: 10;
+    top: 22px;
   }
   @include b(el-tabs) {
-    @include e(header) {
-      margin: 0;
-      padding: 0 24px;
+    @include m(border-card) {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
     @include e(content) {
-      padding: 18px 24px;
-      font-size: 14px;
+      flex: 1;
+      .el-tab-pane,
+      [code] {
+        height: 100%;
+      }
     }
   }
-  .el-tabs__nav-wrap::after {
-    display: none;
-  }
+  // @include b(el-tabs) {
+  //   @include e(header) {
+  //     margin: 0;
+  //     padding: 0 24px;
+  //   }
+  //   @include e(content) {
+  //     padding: 18px 24px;
+  //     font-size: 14px;
+  //   }
+  // }
+  // .el-tabs__nav-wrap::after {
+  //   display: none;
+  // }
 
-  .el-tabs__item {
-    font-size: 16px;
-    line-height: 16px;
-    height: 28px;
-    color: #333;
-    &.is-active {
-      color: $theme-color;
-    }
-  }
-  .el-tabs__nav-next,
-  .el-tabs__nav-prev {
-    line-height: 28px;
-  }
+  // .el-tabs__item {
+  //   font-size: 16px;
+  //   line-height: 16px;
+  //   height: 28px;
+  //   color: #333;
+  //   &.is-active {
+  //     // color: $theme-color;
+  //   }
+  // }
+  // .el-tabs__nav-next,
+  // .el-tabs__nav-prev {
+  //   line-height: 28px;
+  // }
 }
 </style>
