@@ -8,7 +8,7 @@ const state = {
 }
 
 const getters = {
-  loggedIn: state => !!state.user.id
+  loggedIn: state => !!state.user
 }
 
 const actions = {
