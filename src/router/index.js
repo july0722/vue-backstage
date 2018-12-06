@@ -9,7 +9,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.matched.length > 1 && !store.getters.loggedIn) {
+  if (to.matched.length > 1 && !store.getters.loggedIn) {
     next('/login')
   } else {
     next()

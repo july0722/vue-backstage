@@ -26,5 +26,13 @@ export default [
   {
     path: '/login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login')
+  },
+  {
+    path: '/error',
+    component: () => import(/* webpackChunkName: "error" */ '@/views/error')
+  },
+  {
+    path: '*',
+    redirect: '/error'
   }
 ]
