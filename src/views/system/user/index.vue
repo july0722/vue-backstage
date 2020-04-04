@@ -1,27 +1,19 @@
 <template>
   <div class="user">
     <c-table :fields="fields" :columns="columns" url="/sys/user">
-      <el-button
-        slot="operate"
-        size="medium"
-        round
-        @click="$router.push('/sys/user/operation/edit/0')"
-      >创建运营用户</el-button>
+      <el-button slot="operate" size="medium" round @click="$router.push('/sys/user/operation/edit/0')"
+        >创建运营用户</el-button
+      >
       <el-table-column slot="status" label="状态" width="130">
         <template slot-scope="{ row }">
           <i :class="[`bg-${row.status === 0 ? 'success' : 'danger'}`]"></i>
-          {{row.status === 0? '正常' : '锁定'}}
+          {{ row.status === 0 ? '正常' : '锁定' }}
         </template>
       </el-table-column>
       <el-table-column slot="operation" label="操作">
         <template slot-scope="{ row }">
           <el-button size="mini" @click="$router.push(`/sys/user/operation/edit/${row.userId}`)">编辑</el-button>
-          <el-button
-            v-if="row.status === 0"
-            size="mini"
-            type="danger"
-            @click="onOperate(row, $event)"
-          >禁用</el-button>
+          <el-button v-if="row.status === 0" size="mini" type="danger" @click="onOperate(row, $event)">禁用</el-button>
           <el-button v-else size="mini" type="success" @click="onOperate(row, $event)">启用</el-button>
         </template>
       </el-table-column>
@@ -82,12 +74,7 @@ export default {
       this.$_confirm({
         operateText: event.target.innerText,
         name: row.account,
-        operate: () =>
-          this.$http.post(
-            `/sys/user/opt/${row.userId}/${
-              row.status === 0 ? 'lock' : 'unlock'
-            }`
-          ),
+        operate: () => this.$http.post(`/sys/user/opt/${row.userId}/${row.status === 0 ? 'lock' : 'unlock'}`),
         callback() {
           row.status = row.status === 1 ? 0 : 1
         }

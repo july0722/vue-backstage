@@ -1,12 +1,11 @@
 import Vue from 'vue'
-import App from './App.vue'
 import router from '@/router'
 import store from '@/store'
 import * as filters from './filters'
-import promiseFinally from 'promise.prototype.finally'
 import _ from './plugins/lodash'
 import axios from './plugins/axios'
 import '@/plugins/element-ui'
+import App from './App.vue'
 
 Vue.config.productionTip = false
 Object.keys(filters).forEach(key => {
@@ -18,7 +17,6 @@ Object.defineProperty(Vue.prototype, '$_', {
 Object.defineProperty(Vue.prototype, '$http', {
   value: axios
 })
-promiseFinally.shim()
 
 new Vue({
   router,
