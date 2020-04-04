@@ -2,6 +2,12 @@
   <div class="error"><img  /></div>
 </template>
 
+<route-meta>
+{
+  "title": "错误页"
+}
+</route-meta>
+
 <script>
 export default {
   name: 'error'
