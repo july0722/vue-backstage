@@ -1,3 +1,5 @@
-import { createResource } from '@/utils/http'
+import request from '@/utils/request'
 
-export const user = createResource('user')
+export default {
+  users: (data) => request('/system/users', data, 'POST', 'JSON')
+}

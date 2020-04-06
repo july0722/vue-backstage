@@ -1,5 +1,6 @@
 import http from '@/plugins/axios'
 import * as types from '../mutation-types'
+import api from '@/api'
 
 const state = {
   user: '',
@@ -8,12 +9,12 @@ const state = {
 }
 
 const getters = {
-  loggedIn: state => !!state.user
+  loggedIn: (state) => !!state.user
 }
 
 const actions = {
   login: async ({ commit }, payload) => {
-    let response = await http.post('/login/dologin', payload)
+    let response = await api.login(payload)
     if (response.successful) {
       commit(types.RECORD_AUTH_USER, payload.account)
       response = await http.get('/sys/index/getUserMenus')
@@ -22,7 +23,7 @@ const actions = {
     return response
   },
   logout: ({ commit }) => {
-    http.post('/login/logout').then(res => {
+    http.post('/login/logout').then((res) => {
       res.successful && commit(types.RECORD_AUTH_USER, '')
       // router.push('/login')
     })

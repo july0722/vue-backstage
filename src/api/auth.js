@@ -1,4 +1,5 @@
-import { createResource } from '@/utils/http'
+import request from '@/utils/request'
 
-export const token = createResource('token')
-export const user = createResource('user')
+export default {
+  login: (data) => request('/auth/login', data, 'POST', 'JSON')
+}
