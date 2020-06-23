@@ -12,7 +12,7 @@ const plugin = store => {
   const storage = window.sessionStorage
   for (let i = 0, length = storage.length; i < length; i++) {
     if (storage.key(i).indexOf(flag) === 0) {
-      let _keys = storage.key(i).split('_')
+      const _keys = storage.key(i).split('_')
       _keys.shift()
       store.state[_keys.shift()][_keys.join('_')] = JSON.parse(
         storage.getItem(storage.key(i))

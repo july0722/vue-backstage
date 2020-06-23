@@ -4,7 +4,7 @@ export function datetime(date, format = 'yyyy-MM-dd HH:mm:ss') {
   }
   typeof date === 'string' && (date = +date.replace(/\/Date\((\d+)\)\//, '$1'))
   typeof date === 'number' && (date = new Date(date))
-  let obj = {
+  const obj = {
     // yyyy-MM-dd 第q季度 www HH:mm:ss:SSS
     y: date.getFullYear(),
     M: date.getMonth() + 1,
@@ -17,8 +17,8 @@ export function datetime(date, format = 'yyyy-MM-dd HH:mm:ss') {
     s: date.getSeconds(),
     S: date.getMilliseconds()
   }
-  let _week = ['日', '一', '二', '三', '四', '五', '六']
-  for (let i in obj) {
+  const _week = ['日', '一', '二', '三', '四', '五', '六']
+  for (const i in obj) {
     format = format.replace(new RegExp(i + '+', 'g'), m => {
       let val = obj[i] + ''
       if (i === 'w') return (m.length > 2 ? '星期' : '周') + _week[val]

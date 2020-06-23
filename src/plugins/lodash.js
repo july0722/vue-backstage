@@ -14,4 +14,4 @@ export default {
   // throttle,
   // debounce,
   // groupBy
-};
+}

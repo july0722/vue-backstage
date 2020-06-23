@@ -23,7 +23,7 @@ Object.defineProperty(Vue.prototype, '$_confirm', {
       type: type,
       beforeClose: (action, instance, done) => {
         if (instance.confirmButtonLoading) {
-          return
+
         } else if (action === 'confirm') {
           instance.confirmButtonLoading = true
           instance.confirmButtonText = '执行中...'
